@@ -1,796 +1,499 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vishwa Aloka — Data Science & Engineering Undergraduate</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishwa Aloka &mdash; Portfolio</title>
+    <meta
+      name="description"
+      content="Data Science undergraduate based in Colombo, Sri Lanka. Building thoughtful, data-driven software and writing about what I learn."
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Ctext x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia, serif' font-size='34' font-weight='700' fill='%23fafafa'%3EV%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="progress-bar" aria-hidden="true"></div>
 
-    :root {
-      --bg: #080a0f;
-      --surface: #0e1118;
-      --surface2: #151921;
-      --border: rgba(255,255,255,0.07);
-      --accent: #00e5c0;
-      --accent2: #3b82f6;
-      --text: #e8eaf0;
-      --muted: #6b7280;
-      --heading: 'DM Serif Display', serif;
-      --mono: 'DM Mono', monospace;
-      --body: 'Outfit', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--body);
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-      cursor: none;
-    }
-
-    /* Custom cursor */
-    .cursor {
-      position: fixed;
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transition: transform 0.1s ease;
-      mix-blend-mode: screen;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(0,229,192,0.35);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transition: transform 0.18s ease, width 0.2s, height 0.2s, border-color 0.2s;
-    }
-
-    /* Grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Glow orbs */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.18;
-    }
-    .orb-1 { width: 600px; height: 600px; background: #00e5c0; top: -200px; right: -100px; }
-    .orb-2 { width: 500px; height: 500px; background: #3b82f6; bottom: 10%; left: -150px; }
-
-    /* Nav */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(20px);
-      background: rgba(8,10,15,0.7);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-
-    /* Sections */
-    section { position: relative; z-index: 1; }
-
-    /* HERO */
-    #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 120px 60px 60px;
-      gap: 60px;
-    }
-    .hero-left { max-width: 580px; }
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border: 1px solid rgba(0,229,192,0.25);
-      padding: 6px 14px;
-      border-radius: 2px;
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp 0.6s 0.2s forwards;
-    }
-    .hero-tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    h1 {
-      font-family: var(--heading);
-      font-size: clamp(48px, 6vw, 80px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: #fff;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.35s forwards;
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
-      display: block;
-    }
-    .hero-desc {
-      margin-top: 24px;
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 440px;
-      line-height: 1.8;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.5s forwards;
-    }
-    .hero-cta {
-      margin-top: 40px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.7s 0.65s forwards;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 13px 28px;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: all 0.25s;
-      cursor: none;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #080a0f;
-      font-weight: 500;
-    }
-    .btn-primary:hover {
-      background: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(0,229,192,0.25);
-    }
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-secondary:hover {
-      border-color: rgba(255,255,255,0.2);
-      background: var(--surface);
-      transform: translateY(-2px);
-    }
-
-    /* Hero right — stats panel */
-    .hero-right {
-      opacity: 0;
-      animation: fadeIn 1s 0.8s forwards;
-    }
-    .stats-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 36px;
-      position: relative;
-      overflow: hidden;
-    }
-    .stats-panel::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    .stat-item { border-left: 2px solid var(--border); padding-left: 16px; }
-    .stat-number {
-      font-family: var(--heading);
-      font-size: 36px;
-      color: #fff;
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-top: 4px;
-    }
-    .terminal-block {
-      background: #0a0d12;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 18px 20px;
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-    .terminal-line { display: flex; gap: 10px; }
-    .t-prompt { color: var(--accent); }
-    .t-cmd { color: var(--text); }
-    .t-out { color: var(--muted); padding-left: 20px; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* DIVIDER */
-    .section-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 0 60px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ABOUT */
-    #about {
-      padding: 100px 60px;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .section-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    h2 {
-      font-family: var(--heading);
-      font-size: clamp(32px, 4vw, 52px);
-      color: #fff;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-    .about-text p {
-      font-size: 16px;
-      color: var(--muted);
-      margin-bottom: 20px;
-      line-height: 1.9;
-    }
-    .about-text strong { color: var(--text); font-weight: 500; }
-    .highlight-line {
-      display: inline-block;
-      color: var(--accent);
-      font-style: italic;
-      font-family: var(--heading);
-      font-size: 20px;
-      margin-top: 8px;
-    }
-
-    /* SKILLS */
-    #skills {
-      padding: 100px 60px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .skills-header { margin-bottom: 60px; }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .skill-category {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 28px;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-    .skill-category:hover {
-      border-color: rgba(0,229,192,0.3);
-      transform: translateY(-4px);
-    }
-    .skill-cat-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-tag {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--text);
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      padding: 5px 12px;
-      border-radius: 2px;
-      transition: all 0.2s;
-    }
-    .skill-tag:hover {
-      background: rgba(0,229,192,0.08);
-      border-color: rgba(0,229,192,0.3);
-      color: var(--accent);
-    }
-
-    /* PROJECTS */
-    #projects { padding: 100px 60px; }
-    .projects-header { margin-bottom: 60px; }
-    .projects-grid { display: grid; gap: 2px; }
-    .project-row {
-      display: grid;
-      grid-template-columns: 80px 1fr 1fr auto;
-      align-items: center;
-      gap: 40px;
-      padding: 32px 0;
-      border-top: 1px solid var(--border);
-      transition: all 0.3s;
-      cursor: none;
-    }
-    .project-row:last-child { border-bottom: 1px solid var(--border); }
-    .project-row:hover { padding-left: 16px; }
-    .project-row:hover .project-num { color: var(--accent); }
-    .project-num {
-      font-family: var(--heading);
-      font-size: 13px;
-      color: var(--muted);
-      font-style: italic;
-      transition: color 0.3s;
-    }
-    .project-name {
-      font-family: var(--heading);
-      font-size: 22px;
-      color: #fff;
-      letter-spacing: -0.01em;
-    }
-    .project-desc {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-    .project-tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 3px 10px;
-      border-radius: 1px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    /* CONNECT */
-    #connect {
-      padding: 100px 60px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-    .connect-inner {
-      max-width: 700px;
-    }
-    .connect-inner p {
-      font-size: 16px;
-      color: var(--muted);
-      margin-top: 20px;
-      margin-bottom: 48px;
-      line-height: 1.8;
-    }
-    .connect-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .connect-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 24px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      text-decoration: none;
-      color: var(--text);
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      transition: all 0.25s;
-      cursor: none;
-    }
-    .connect-link svg { color: var(--accent); }
-    .connect-link:hover {
-      border-color: rgba(0,229,192,0.35);
-      background: rgba(0,229,192,0.05);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 32px 60px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    footer p {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
-    footer span { color: var(--accent); }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      nav { padding: 18px 24px; }
-      .nav-links { display: none; }
-      #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
-      .hero-right { display: none; }
-      #about { grid-template-columns: 1fr; padding: 60px 24px; gap: 32px; }
-      #skills { padding: 60px 24px; }
-      .skills-grid { grid-template-columns: 1fr; }
-      #projects { padding: 60px 24px; }
-      .project-row { grid-template-columns: 1fr; gap: 8px; }
-      .project-num { display: none; }
-      .project-tags { justify-content: flex-start; }
-      #connect { padding: 60px 24px; }
-      footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
-      .section-divider { margin: 0 24px; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-
-  <nav>
-    <a href="#hero" class="nav-logo">VA — 16</a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Stack</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#connect">Connect</a></li>
-    </ul>
-  </nav>
-
-  <section id="hero">
-    <div class="hero-left">
-      <div class="hero-tag">Available for opportunities</div>
-      <h1>Vishwa<br><em>Aloka.</em></h1>
-      <p class="hero-desc">
-        Data Science Honours student at SLIIT. Architecting scalable intelligence engines, multi-source ETL pipelines, and structural web applications.
-      </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#connect" class="btn btn-secondary">Get in Touch</a>
+    <nav>
+      <div class="nav-left">
+        <a href="#" class="nav-logo">Vishwa Aloka</a>
       </div>
-    </div>
-    <div class="hero-right">
-      <div class="stats-panel">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number">6+ Mos</div>
-            <div class="stat-label">EDW & Analytics Experience</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">5+</div>
-            <div class="stat-label">Core Tech Certifications</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">B.Sc.</div>
-            <div class="stat-label">Data Science (Honours)</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">AI/DE</div>
-            <div class="stat-label">Primary Development Focus</div>
-          </div>
-        </div>
-        <div class="terminal-block">
-          <div class="terminal-line">
-            <span class="t-prompt">~</span>
-            <span class="t-cmd">whoami</span>
-          </div>
-          <div class="terminal-line">
-            <span class="t-out">Vishwa Aloka Bandara</span>
-          </div>
-          <div class="terminal-line" style="margin-top:8px">
-            <span class="t-prompt">~</span>
-            <span class="t-cmd">cat focus.txt</span>
-          </div>
-          <div class="terminal-line">
-            <span class="t-out">Advanced RAG, Data Pipelines, Predictive Modeling</span>
-          </div>
-          <div class="terminal-line" style="margin-top:8px">
-            <span class="t-prompt">~</span>
-            <span class="t-cmd" style="color:var(--accent)">_</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      </ul>
+      <button
+        class="hamburger"
+        type="button"
+        aria-label="Menu"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
 
-  <div class="section-divider"></div>
-
-  <section id="about">
-    <div class="about-meta reveal">
-      <div class="section-label">01 / About</div>
-      <h2>Who I am.</h2>
-    </div>
-    <div class="about-text reveal">
-      <p>
-        I'm a <strong>B.Sc. Honours Data Science undergraduate at SLIIT</strong> with commercial experience handling enterprise data warehousing and analytics pipelines. My engineering philosophy revolves around building robust architectures that ingest data efficiently and serve it smartly.
-      </p>
-      <p>
-        During my time within Enterprise Data Warehousing at National Development Bank, I automated multi-database reconciliation frameworks and designed metadata catalogs that dynamically constructed structural data dictionaries for analytial groups.
-      </p>
-      <p>
-        My technical exploration targets the intersection of advanced AI architectures and transactional engineering—specializing in mapping hierarchical documentation structures to reduce computational token overheads while maintaining contextual integrity.
-      </p>
-      <span class="highlight-line">"Bridging mathematical precision with production data engineering."</span>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="skills">
-    <div class="skills-header reveal">
-      <div class="section-label">02 / Stack</div>
-      <h2>Technical arsenal.</h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-category reveal">
-        <div class="skill-cat-label">Languages</div>
-        <div class="skill-list">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">C</span>
-          <span class="skill-tag">R</span>
-          <span class="skill-tag">SQL</span>
-        </div>
-      </div>
-      <div class="skill-category reveal" style="transition-delay: 0.1s">
-        <div class="skill-cat-label">AI & Knowledge Tools</div>
-        <div class="skill-list">
-          <span class="skill-tag">GraphRAG</span>
-          <span class="skill-tag">RAPTOR</span>
-          <span class="skill-tag">LangChain</span>
-          <span class="skill-tag">LlamaIndex</span>
-          <span class="skill-tag">ChromaDB</span>
-        </div>
-      </div>
-      <div class="skill-category reveal" style="transition-delay: 0.2s">
-        <div class="skill-cat-label">Data & Infrastructure</div>
-        <div class="skill-list">
-          <span class="skill-tag">Snowflake</span>
-          <span class="skill-tag">BigQuery</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">MSSQL / MySQL</span>
-          <span class="skill-tag">Node.js / React</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="projects">
-    <div class="projects-header reveal">
-      <div class="section-label">03 / Projects</div>
-      <h2>Selected work.</h2>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
     </div>
 
-    <div class="projects-grid">
-      <div class="project-row reveal">
-        <div class="project-num">01</div>
-        <div>
-          <div class="project-name">Ross: Legal Intelligence Workspace</div>
-        </div>
-        <div class="project-desc">
-          Full-stack legal solution powered by recursive summarization structures (RAPTOR) and GraphRAG to map explicit document hierarchies, accelerating structural analytics while saving 30% on token expenses.
-        </div>
-        <div class="project-tags">
-          <span class="project-tag">FastAPI</span>
-          <span class="project-tag">GraphRAG</span>
-          <span class="project-tag">MongoDB</span>
+    <header class="hero">
+      <div class="hero-text">
+        <p class="hero-eyebrow">
+          Data Science Undergraduate &middot; Colombo, Sri Lanka
+        </p>
+        <h1>
+          I'm Vishwa Aloka<br /></em>
+        </h1>
+        <p class="hero-bio">
+          I'm a Data Science undergraduate focused on innovation through
+          data-driven solutions. I build practical software, write about what I
+          learn, and care deeply about the details.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-fill">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <polyline points="2,4 12,14 22,4"></polyline>
+            </svg>
+            Get in touch
+          </a>
+          <a href="./Vishwa Aloka CV New.pdf" class="btn" download>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download CV
+          </a>
+          <a
+            href="https://github.com/vishwa-aloka-16"
+            class="btn"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              />
+            </svg>
+            GitHub
+          </a>
         </div>
       </div>
 
-      <div class="project-row reveal">
-        <div class="project-num">02</div>
-        <div>
-          <div class="project-name">FlyCast: Open-Source Forecast API</div>
+      <!-- <div class="hero-photo-wrap">
+        <div class="hero-photo-placeholder">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.2"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path>
+          </svg>
+          Your photo
         </div>
-        <div class="project-desc">
-          Predictive flight cancellation and delay engine trained with XGB Classifier on US flight tracking systems, equipped with responsive visualization frontends and dedicated endpoints.
+      </div> -->
+    </header>
+
+    <!-- <div class="stats-bar reveal">
+      <div class="stat">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Projects shipped</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Articles written</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">1</span>
+        <span class="stat-label">Internship</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Years coding</span>
+      </div>
+    </div> -->
+
+    <hr class="section-divider" />
+
+    <section class="skills-section" id="skills">
+      <div class="section-header">
+        <p class="section-label">What I Know</p>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <p class="skill-group-title">Data Engineering &amp; Database Systems Tools</p>
+          <div class="skill-tags">
+            <span class="skill-tag">MSSQL</span>
+            <span class="skill-tag">Supabase</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Snowflake</span>
+            <span class="skill-tag">BigQuery</span>
+            <span class="skill-tag">Power BI</span>
+          </div>
         </div>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">Scikit-learn</span>
-          <span class="project-tag">Flask</span>
+        <div class="skill-group">
+          <p class="skill-group-title">Web & Programming Languages</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">React/React Native</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">JSP/Servlet</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <p class="skill-group-title">AI / ML Tools &amp; Technologies</p>
+          <div class="skill-tags">
+            <span class="skill-tag">LangChain</span>
+            <span class="skill-tag">LlamaIndex</span>
+            <span class="skill-tag">Classification & Regression</span>
+            <span class="skill-tag">RAPTOR (RAG)</span>
+            <span class="skill-tag">GraphRAG</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="project-row reveal">
-        <div class="project-num">03</div>
-        <div>
-          <div class="project-name">Multi-Source Social ETL Framework</div>
+    <hr class="section-divider" />
+
+    <section id="projects">
+      <div class="section-header">
+        <p class="section-label">Selected Work</p>
+        <h2 class="section-title">Projects</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img
+              class="project-img"
+              src="./imgs/project-1.png"
+              alt="Project One screenshot"
+            />
+          </div>
+          <div class="project-inner">
+            <div class="project-body">
+              <p class="project-tag">Web App</p>
+              <h3 class="project-title">
+                Ross: Legal Workspace with Dynamic RAG Systems (GraphRAG, RAPTOR)
+              </h3>
+              <p class="project-desc">
+                    This project aims to streamline legal workflows with Gemini 3.5 powered document 
+                    summarization and a dynamic RAG system that automatically optimizes at inference time.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-chip">React/ Node JS/ MongoDB/ Express</span>
+                <span class="tech-chip">Flask</span>
+                <span class="tech-chip">PostgreSQL SUPABASE</span>
+                <span class="tech-chip">Dynamic RAG</span>
+                <span class="tech-chip">RAPTOR AND GraphRAG</span>
+              </div>
+              <div class="project-links project-links-spaced">
+                <a
+                  href="https://github.com/vishwa-aloka-16/ross-webapp"
+                  class="project-link"
+                  target="_blank"
+                  rel="noreferrer"
+                  >GitHub</a
+                >
+                <a
+                  href="https://ross-ai.netlify.app/"
+                  class="project-link"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live Demo</a
+                >
+              </div>
+            </div>
+            <span class="project-arrow" aria-hidden="true">&nearr;</span>
+          </div>
         </div>
-        <div class="project-desc">
-          Automated multi-source extraction pipeline built to parse sentiment and public brand mentions across digital channels, parsing data into highly structured PostgreSQL tables via dynamic VADER scoring.
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img
+              class="project-img"
+              src="./imgs/Project-2.png"
+              alt="Project Two screenshot"
+            />
+          </div>
+          <div class="project-inner">
+            <div class="project-body">
+              <p class="project-tag">An API</p>
+              <h3 class="project-title">
+                FlyCast: Flight Delay Prediction Open-Source Web API
+              </h3>
+              <p class="project-desc">
+                An open-source, real-time web API for predicting delays 
+                and cancellations across US domestic flight networks using historical aviation data..
+              </p>
+              <div class="tech-stack">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">FastAPI</span>
+              </div>
+              <div class="project-links project-links-spaced">
+                <a
+                  href="https://github.com/vishwa-aloka-16/FlyCast"
+                  class="project-link"
+                  target="_blank"
+                  rel="noreferrer"
+                  >GitHub</a
+                >
+                <a
+                  href="https://flycast-api.onrender.com/"
+                  class="project-link"
+                  target="_blank"
+                  rel="noreferrer"
+                  >Live Demo</a
+                >
+              </div>
+            </div>
+            <span class="project-arrow" aria-hidden="true">&nearr;</span>
+          </div>
         </div>
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">Supabase</span>
-          <span class="project-tag">ETL Automation</span>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img
+              class="project-img"
+              src="./imgs/Project-3.png"
+              alt="Project Three screenshot"
+            />
+          </div>
+          <div class="project-inner">
+            <div class="project-body">
+              <p class="project-tag">Mobile</p>
+              <h3 class="project-title">
+                Automated Multi-Source Social ETL Framework
+              </h3>
+              <p class="project-desc">
+                An automated ETL pipeline designed to monitor and ingest brand mentions and public sentiment across social
+                media platforms.
+              </p>
+              <div class="tech-stack">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">SQL</span>
+              </div>
+              <div class="project-links project-links-spaced">
+                <a
+                  href="https://github.com/vishwa-aloka-16/BrandPulse"
+                  class="project-link"
+                  target="_blank"
+                  rel="noreferrer"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+            <span class="project-arrow" aria-hidden="true">&nearr;</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="section-divider"></div>
+    <hr class="section-divider" />
 
-  <section id="connect">
-    <div class="connect-inner">
-      <div class="section-label reveal">04 / Connect</div>
-      <h2 class="reveal">Let's build something.</h2>
-      <p class="reveal">
-        Open to core technical roles, engineering research collaborations, and discussions regarding data framework design. Reach out through my verified communication points.
-      </p>
-      <div class="connect-links reveal">
-        <a href="https://linkedin.com/in/invishwaaloka" target="_blank" class="connect-link">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
+    <section id="writing">
+      <div class="section-header">
+        <p class="section-label">Writing On Medium</p>
+        <h2 class="section-title">Articles</h2>
+      </div>
+      <div class="articles-list">
+        <a
+          href="https://medium.com/@vishwaaloka16/optimizing-chunking-strategies-for-raptor-tree-construction-a9fbbaf19b37"
+          class="article-card"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div class="article-body">
+            <div class="article-meta">
+              <span>May 2026</span>
+              <span class="dot"></span>
+              <span>6 min read</span>
+            </div>
+            <h3 class="article-title">
+              Optimizing Chunking Strategies For RAPTOR Tree Construction
+            </h3>
+            <p class="article-excerpt">
+              Why Standard Chunking Destroys Your RAG Performance, and How to Fix It with Adversarial, Hierarchical, and Transactional Pipelines
+            </p>
+            <span class="article-readmore">Read on Medium &nearr;</span>
+          </div>
+          <div class="article-thumb-wrap">
+            <img
+              class="article-thumb"
+              src="./imgs/Artical-1.png"
+              alt="Article one cover"
+            />
+          </div>
         </a>
-        <a href="mailto:vishwaaloka16@gmail.com" class="connect-link">
-          Email: vishwaaloka16@gmail.com
-        </a>
-        <a href="https://github.com/vishwa-aloka-16" target="_blank" class="connect-link">
-          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-          GitHub
-        </a>
+
       </div>
-    </div>
-  </section>
+      <div class="articles-cta">
+        <a
+          href="https://medium.com/@vishwaaloka16"
+          class="btn"
+          target="_blank"
+          rel="noreferrer"
+          >All Articles on Medium &nearr;</a
+        >
+      </div>
+    </section>
 
-  <footer>
-    <p>Vishwa Aloka Bandara &mdash; <span>vishwaaloka16@gmail.com</span></p>
-    <p>Built with precision. Technical Minimalist Luxury.</p>
-  </footer>
+    <hr class="section-divider" />
 
-  <script>
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursorRing');
-    let mx = 0, my = 0, rx = 0, ry = 0;
+    <section id="experience">
+      <div class="section-header">
+        <p class="section-label">Experience</p>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="experience-card">
+        <div class="exp-header">
+          <div>
+            <h3 class="exp-role">Intern - Enterprise Data Warehousing And Data Analytics</h3>
+            <p class="exp-company">National Development Bank &middot; Colombo 02, Sri Lanka</p>
+          </div>
+          <span class="exp-period">September 2025 &ndash; March 2026</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>
+            Automated the reconciliation process between two internal system databases using Python, reducing processing time and improving operational efficiency.
+          </li>
+          <li>
+            Developed a tool that automatically generates a data dictionary and metadata catalog for databases, helping analysts locate and understand available data faster.
+          </li>
+          <li>
+            Created analytical dashboards to track bank savings strategies and analyze customer demographics, supporting data-driven decision-making.
+          </li>
+          <li>
+            Built branch-wise performance dashboards and analyzed cross-selling patterns to identify performance gaps and actionable opportunities to improve outcomes.
+          </li>
+        </ul>
+        <div class="exp-skills">
+          <span class="exp-skill">Python</span>
+          <span class="exp-skill">Data Warehousing</span>
+          <span class="exp-skill">Data Analytics</span>
+          <span class="exp-skill">Dashboards</span>
+          <span class="exp-skill">Metadata</span>
+        </div>
+      </div>
+    </section>
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      cursor.style.left = mx - 4 + 'px';
-      cursor.style.top = my - 4 + 'px';
-    });
+    <section class="contact-section" id="contact">
+      <p class="contact-eyebrow">Let's Work Together</p>
+      <h2 class="section-title contact-section-title">Contact</h2>
+      <h2 class="contact-heading">Have a role or project<br />in mind?</h2>
+      <p class="contact-sub">
+        I'm currently open to internship and junior engineering roles. I respond
+        within 24 hours.
+      </p>
+      <div class="contact-actions">
+        <a href="mailto:vishwaaloka16@gmail.com" class="btn btn-white-fill">
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <polyline points="2,4 12,14 22,4"></polyline>
+          </svg>
+          vishwaaloka16@gmail.com
+        </a>
+        <a
+          href="https://www.linkedin.com/in/vishwaaloka/"
+          class="btn btn-white"
+          target="_blank"
+          rel="noreferrer"
+          >LinkedIn &nearr;</a
+        >
+        <a href="./Vishwa Aloka CV New.pdf" class="btn btn-white" download
+          >Download CV</a
+        >
+      </div>
+    </section>
 
-    function animateRing() {
-      rx += (mx - rx - 18) * 0.12;
-      ry += (my - ry - 18) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-name">Vishwa Aloka</span>
+        <div class="footer-links">
+          <a
+            href="https://github.com/vishwa-aloka-16"
+            target="_blank"
+            rel="noreferrer"
+            >GitHub</a
+          >
+          <a
+            href="https://medium.com/@vishwaaloka16"
+            target="_blank"
+            rel="noreferrer"
+            >Medium</a
+          >
+          <a
+            href="https://www.linkedin.com/in/vishwaaloka/"
+            target="_blank"
+            rel="noreferrer"
+            >LinkedIn</a
+          >
+          <a href="mailto:vishwaaloka16@gmail.com">Email</a>
+        </div>
+        <p class="footer-copy">&copy; 2025 Vishwa Aloka</p>
+      </div>
+    </footer>
 
-    document.querySelectorAll('a, button, .project-row, .skill-category').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        ring.style.width = '56px';
-        ring.style.height = '56px';
-        ring.style.borderColor = 'rgba(0,229,192,0.6)';
-      });
-      el.addEventListener('mouseleave', () => {
-        ring.style.width = '36px';
-        ring.style.height = '36px';
-        ring.style.borderColor = 'rgba(0,229,192,0.35)';
-      });
-    });
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 60);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
