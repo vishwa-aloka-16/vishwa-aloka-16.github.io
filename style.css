@@ -13,6 +13,15 @@
   --wide-width: 1100px;
 }
 
+body.dark-mode {
+  --black: #f5f5f5;
+  --white: #0f1115;
+  --gray-light: #191d24;
+  --gray-mid: #9da6b3;
+  --gray-border: #2a313d;
+  --green: #6ed89f;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -22,6 +31,7 @@ body {
   font-size: 17px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #progress-bar {
@@ -50,6 +60,12 @@ nav {
 }
 
 .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.nav-right {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -122,6 +138,46 @@ nav {
 .nav-cta:hover {
   background: var(--black) !important;
   color: var(--white) !important;
+}
+
+.theme-toggle {
+  border: 1px solid var(--gray-border);
+  background: transparent;
+  color: var(--black);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.theme-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-toggle-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle-moon { display: none; }
+
+body.dark-mode .theme-toggle-sun { display: none; }
+body.dark-mode .theme-toggle-moon { display: inline-flex; }
+
+.mobile-theme-toggle {
+  width: 40px;
 }
 
 .hamburger {
@@ -885,6 +941,34 @@ footer {
   font-weight: 300;
 }
 
+body.dark-mode nav {
+  background: rgba(15, 17, 21, 0.96);
+}
+
+body.dark-mode .hero-bio,
+body.dark-mode .project-desc,
+body.dark-mode .article-excerpt,
+body.dark-mode .exp-bullets li {
+  color: #c8d0da;
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-name {
+  color: #c8d0da;
+}
+
+body.dark-mode .footer-copy {
+  color: #7f8792;
+}
+
+body.dark-mode .contact-sub {
+  color: #c8d0da;
+}
+
+body.dark-mode footer {
+  border-top-color: var(--gray-border);
+}
+
 @keyframes fadeUp {
   to {
     opacity: 1;
@@ -896,6 +980,7 @@ footer {
   nav { padding: 0 18px; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
+  .nav-right { gap: 10px; }
   .avail-badge { display: none; }
   .hero {
     padding: 56px 18px 52px;
