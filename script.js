@@ -2,6 +2,7 @@ const mobileMenu = document.getElementById("mobileMenu");
 const hamburgerButton = document.querySelector(".hamburger");
 const revealElements = document.querySelectorAll("section, .skills-section, .contact-section, .stats-bar");
 const progressBar = document.getElementById("progress-bar");
+const themeToggles = document.querySelectorAll(".theme-toggle");
 
 const projectImageFallback = `
   <div class="project-img-placeholder">
@@ -30,7 +31,27 @@ function updateProgressBar() {
   progressBar.style.width = `${progress}%`;
 }
 
+function applyTheme(theme) {
+  const isDarkMode = theme === "dark";
+  document.body.classList.toggle("dark-mode", isDarkMode);
+
+  themeToggles.forEach((toggle) => {
+    toggle.setAttribute("aria-pressed", String(isDarkMode));
+  });
+}
+
+function toggleTheme() {
+  const isDarkMode = document.body.classList.contains("dark-mode");
+  const nextTheme = isDarkMode ? "light" : "dark";
+  localStorage.setItem("theme", nextTheme);
+  applyTheme(nextTheme);
+}
+
 hamburgerButton.addEventListener("click", toggleMenu);
+
+themeToggles.forEach((toggle) => {
+  toggle.addEventListener("click", toggleTheme);
+});
 
 document.querySelectorAll(".mobile-menu a").forEach((link) => {
   link.addEventListener("click", () => setMenuState(false));
@@ -66,4 +87,7 @@ const observer = new IntersectionObserver((entries) => {
 revealElements.forEach((element) => observer.observe(element));
 
 window.addEventListener("scroll", updateProgressBar);
+
+const savedTheme = localStorage.getItem("theme");
+applyTheme(savedTheme || "dark");
 updateProgressBar();
