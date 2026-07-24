@@ -1016,7 +1016,7 @@
         <h2 class="font-serif text-2xl font-bold">Contact Me</h2>
         <p class="mt-2 text-[15px] leading-7 text-muted">Have a project, opportunity, or question? Send a message and I’ll get back to you.</p>
       </div>
-      <form class="mt-7 grid gap-5" id="contact-form">
+      <form class="mt-7 grid gap-5" id="contact-form" action="https://formcarry.com/s/q5YNXyDmIR1" method="POST" enctype="multipart/form-data">
         <div class="grid gap-5 sm:grid-cols-2">
           <div>
             <label class="mb-2 block text-sm font-semibold" for="contact-name">Name</label>
@@ -1039,7 +1039,7 @@
           <button class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-ink" type="submit">
             Send Message
           </button>
-          <p class="text-sm text-muted" id="contact-status" role="status" aria-live="polite"></p>
+          <p class="text-sm text-muted">Your message will be delivered through the contact form.</p>
         </div>
       </form>
     </section>
@@ -1161,23 +1161,6 @@
     window.addEventListener("resize", () => {
       if (window.innerWidth >= 768) setMobileMenu(false);
       if (window.innerWidth >= 1500) setContactMenu(false);
-    });
-
-    const contactForm = document.getElementById("contact-form");
-    const contactStatus = document.getElementById("contact-status");
-
-    contactForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(contactForm);
-      const name = data.get("name").trim();
-      const email = data.get("email").trim();
-      const subject = data.get("subject").trim();
-      const message = data.get("message").trim();
-      const emailSubject = encodeURIComponent(`[Portfolio] ${subject}`);
-      const emailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-
-      contactStatus.textContent = "Opening your email application…";
-      window.location.href = `mailto:vishwaaloka16@gmail.com?subject=${emailSubject}&body=${emailBody}`;
     });
 
     const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
