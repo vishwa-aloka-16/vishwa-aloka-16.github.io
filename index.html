@@ -32,6 +32,119 @@
   </script>
   <style>
     ::selection { background: #175cd3; color: #fff; }
+    .theme-toggle {
+      display: inline-flex;
+      width: 2.5rem;
+      height: 2.5rem;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d9dee3;
+      border-radius: 9999px;
+      color: #191c1e;
+      transition: border-color .18s ease, background-color .18s ease, color .18s ease, transform .18s ease;
+    }
+    .theme-toggle:hover,
+    .theme-toggle:focus-visible {
+      border-color: #175cd3;
+      background: #eef4ff;
+      color: #175cd3;
+      outline: none;
+      transform: translateY(-1px);
+    }
+    body.dark-mode {
+      background-color: #080c10 !important;
+      color: #edf1f5;
+      color-scheme: dark;
+    }
+    body.dark-mode .site-nav { background: rgba(15, 20, 26, .96) !important; }
+    body.dark-mode .bg-paper { background-color: #10151b !important; }
+    body.dark-mode .bg-canvas { background-color: #171d24 !important; }
+    body.dark-mode .bg-white { background-color: #10151b !important; }
+    body.dark-mode .bg-ink { background-color: #2b3540 !important; }
+    body.dark-mode .text-ink { color: #edf1f5 !important; }
+    body.dark-mode .text-muted { color: #aab4bd !important; }
+    body.dark-mode .border-line { border-color: #303a44 !important; }
+    body.dark-mode .bg-line { background-color: #303a44 !important; }
+    body.dark-mode .border-ink { border-color: #cbd3da !important; }
+    body.dark-mode .section-rule { background: #d5dce2; }
+    body.dark-mode .page-loader,
+    body.dark-mode .mobile-menu-overlay,
+    body.dark-mode .contact-menu-overlay { background: #0f141a; }
+    body.dark-mode .loader-title { color: #edf1f5; }
+    body.dark-mode .loader-message { color: #aab4bd; }
+    body.dark-mode .loader-mark {
+      border-color: rgba(237, 241, 245, .18);
+      border-top-color: #edf1f5;
+    }
+    body.dark-mode .fullscreen-menu-header,
+    body.dark-mode .fullscreen-close,
+    body.dark-mode .wiki-preview,
+    body.dark-mode .contact-rail-link,
+    body.dark-mode .mobile-contact-link {
+      border-color: #303a44;
+    }
+    body.dark-mode .fullscreen-close { color: #edf1f5; }
+    body.dark-mode .fullscreen-close:hover,
+    body.dark-mode .fullscreen-close:focus-visible {
+      background: #edf1f5;
+      color: #10151b;
+    }
+    body.dark-mode .wiki-preview,
+    body.dark-mode .table-of-contents.is-minimized .toc-link:hover::after,
+    body.dark-mode .table-of-contents.is-minimized .toc-link:focus-visible::after,
+    body.dark-mode .contact-rail.is-minimized .contact-rail-link:hover::before,
+    body.dark-mode .contact-rail.is-minimized .contact-rail-link:focus-visible::before {
+      border-color: #303a44;
+      background: #151b22;
+      color: #edf1f5;
+    }
+    body.dark-mode .wiki-term:hover,
+    body.dark-mode .wiki-term:focus-visible,
+    body.dark-mode .toc-link:hover,
+    body.dark-mode .toc-link:focus-visible,
+    body.dark-mode .toc-link.is-active,
+    body.dark-mode .mobile-toc-link:hover,
+    body.dark-mode .mobile-toc-link:focus-visible,
+    body.dark-mode .mobile-toc-link.is-active,
+    body.dark-mode .contact-rail-link:hover,
+    body.dark-mode .contact-rail-link:focus-visible,
+    body.dark-mode .mobile-contact-link:hover,
+    body.dark-mode .mobile-contact-link:focus-visible {
+      background: #192536;
+    }
+    body.dark-mode .theme-toggle {
+      border-color: #3a4550;
+      color: #edf1f5;
+    }
+    body.dark-mode .theme-toggle:hover,
+    body.dark-mode .theme-toggle:focus-visible {
+      border-color: #6f91ff;
+      background: #192536;
+      color: #8ea7ff;
+    }
+    body.dark-mode input,
+    body.dark-mode textarea {
+      border-color: #39444e !important;
+      background: #0c1117 !important;
+      color: #edf1f5 !important;
+    }
+    body.dark-mode input::placeholder,
+    body.dark-mode textarea::placeholder { color: #77838e !important; }
+    body.dark-mode .project-toggle-icon { background: #10151b; }
+    body.dark-mode .mobile-contact-fab {
+      background: #edf1f5;
+      color: #10151b;
+    }
+    body.dark-mode .mobile-contact-fab:hover,
+    body.dark-mode .mobile-contact-fab:focus-visible {
+      background: #6f91ff;
+      color: #fff;
+    }
+    body.dark-mode .background-flow-base {
+      stroke: #66717b;
+      opacity: .26;
+    }
     .background-flow {
       position: fixed;
       inset: 0;
@@ -575,15 +688,35 @@
     </svg>
   </div>
 
-  <nav class="no-print fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
+  <nav class="site-nav no-print fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
     <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3.5">
       <a class="font-serif text-lg font-bold tracking-wide md:w-48" href="#top">VISHWA BANDARA</a>
       <div class="hidden min-w-0 flex-1 justify-center px-4 md:flex" aria-live="polite" aria-atomic="true">
         <span class="section-header-animate truncate font-serif text-base font-bold text-ink" id="section-header">Welcome</span>
       </div>
-      <a class="hidden rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent md:inline-flex md:w-48 md:justify-center" href="Vishwa-Bandara-CV.pdf" download>
-        Download CV
-      </a>
+      <div class="hidden items-center gap-2 md:flex md:w-48">
+        <a class="inline-flex flex-1 justify-center rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent" href="Vishwa-Bandara-CV.pdf" download>
+          Download CV
+        </a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
+          <svg class="h-5 w-5" data-theme-moon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+          </svg>
+          <svg class="hidden h-5 w-5" data-theme-sun viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5"></circle>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+          </svg>
+        </button>
+      </div>
+      <button class="theme-toggle md:hidden" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
+        <svg class="h-5 w-5" data-theme-moon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+        </svg>
+        <svg class="hidden h-5 w-5" data-theme-sun viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+      </button>
       <button class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition hover:border-accent hover:text-accent md:hidden" id="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
         <svg class="h-5 w-5" id="menu-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
@@ -1224,6 +1357,41 @@
   </footer>
 
   <script>
+    const themeToggles = Array.from(document.querySelectorAll("[data-theme-toggle]"));
+
+    function applyTheme(theme) {
+      const isDark = theme === "dark";
+      document.body.classList.toggle("dark-mode", isDark);
+
+      themeToggles.forEach((toggle) => {
+        toggle.setAttribute("aria-pressed", String(isDark));
+        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        toggle.querySelector("[data-theme-moon]").classList.toggle("hidden", isDark);
+        toggle.querySelector("[data-theme-sun]").classList.toggle("hidden", !isDark);
+      });
+    }
+
+    let savedTheme = null;
+    try {
+      savedTheme = localStorage.getItem("portfolio-theme");
+    } catch (error) {
+      savedTheme = null;
+    }
+    const preferredTheme = savedTheme || "light";
+    applyTheme(preferredTheme);
+
+    themeToggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+        applyTheme(nextTheme);
+        try {
+          localStorage.setItem("portfolio-theme", nextTheme);
+        } catch (error) {
+          // The selected theme still applies for the current visit.
+        }
+      });
+    });
+
     const pageLoader = document.getElementById("page-loader");
     const minimumLoaderTime = new Promise((resolve) => setTimeout(resolve, 1000));
     const pageFullyLoaded = new Promise((resolve) => {
