@@ -1,1594 +1,2907 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="scroll-smooth" lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Portfolio of Vishwa Bandara, a data science specialist focused on data engineering, AI/ML, analytics, and intelligent applications.">
-  <meta name="theme-color" content="#f7f9fb">
-  <title>Vishwa Bandara | Data Science Portfolio</title>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,600&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: "#191c1e",
-            muted: "#5f666b",
-            paper: "#ffffff",
-            canvas: "#f4f6f8",
-            accent: "#175cd3",
-            line: "#d9dee3"
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio of Vishwa Bandara, a data science specialist focused on data engineering, AI/ML, analytics, and intelligent applications."
+    />
+    <meta name="theme-color" content="#f7f9fb" />
+    <title>Vishwa Bandara | Data Science Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#191c1e",
+              muted: "#5f666b",
+              paper: "#ffffff",
+              canvas: "#f4f6f8",
+              accent: "#175cd3",
+              line: "#d9dee3",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Source Serif 4", "serif"],
+            },
           },
-          fontFamily: {
-            sans: ["Inter", "sans-serif"],
-            serif: ["Source Serif 4", "serif"]
-          }
+        },
+      };
+    </script>
+    <style>
+      ::selection {
+        background: #175cd3;
+        color: #fff;
+      }
+      .theme-toggle {
+        display: inline-flex;
+        width: 2.5rem;
+        height: 2.5rem;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #d9dee3;
+        border-radius: 9999px;
+        color: #191c1e;
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease,
+          transform 0.18s ease;
+      }
+      .theme-toggle:hover,
+      .theme-toggle:focus-visible {
+        border-color: #175cd3;
+        background: #eef4ff;
+        color: #175cd3;
+        outline: none;
+        transform: translateY(-1px);
+      }
+      body.dark-mode {
+        background-color: #080c10 !important;
+        color: #edf1f5;
+        color-scheme: dark;
+      }
+      body.dark-mode .site-nav {
+        background: rgba(15, 20, 26, 0.96) !important;
+      }
+      body.dark-mode .bg-paper {
+        background-color: #10151b !important;
+      }
+      body.dark-mode .bg-canvas {
+        background-color: #171d24 !important;
+      }
+      body.dark-mode .bg-white {
+        background-color: #10151b !important;
+      }
+      body.dark-mode .bg-ink {
+        background-color: #2b3540 !important;
+      }
+      body.dark-mode .text-ink {
+        color: #edf1f5 !important;
+      }
+      body.dark-mode .text-muted {
+        color: #aab4bd !important;
+      }
+      body.dark-mode .border-line {
+        border-color: #303a44 !important;
+      }
+      body.dark-mode .bg-line {
+        background-color: #303a44 !important;
+      }
+      body.dark-mode .border-ink {
+        border-color: #cbd3da !important;
+      }
+      body.dark-mode .section-rule {
+        background: #d5dce2;
+      }
+      body.dark-mode .page-loader,
+      body.dark-mode .mobile-menu-overlay,
+      body.dark-mode .contact-menu-overlay {
+        background: #0f141a;
+      }
+      body.dark-mode .loader-title {
+        color: #edf1f5;
+      }
+      body.dark-mode .loader-message {
+        color: #aab4bd;
+      }
+      body.dark-mode .loader-mark {
+        border-color: rgba(237, 241, 245, 0.18);
+        border-top-color: #edf1f5;
+      }
+      body.dark-mode .fullscreen-menu-header,
+      body.dark-mode .fullscreen-close,
+      body.dark-mode .wiki-preview,
+      body.dark-mode .contact-rail-link,
+      body.dark-mode .mobile-contact-link {
+        border-color: #303a44;
+      }
+      body.dark-mode .fullscreen-close {
+        color: #edf1f5;
+      }
+      body.dark-mode .fullscreen-close:hover,
+      body.dark-mode .fullscreen-close:focus-visible {
+        background: #edf1f5;
+        color: #10151b;
+      }
+      body.dark-mode .wiki-preview,
+      body.dark-mode .table-of-contents.is-minimized .toc-link:hover::after,
+      body.dark-mode
+        .table-of-contents.is-minimized
+        .toc-link:focus-visible::after,
+      body.dark-mode
+        .contact-rail.is-minimized
+        .contact-rail-link:hover::before,
+      body.dark-mode
+        .contact-rail.is-minimized
+        .contact-rail-link:focus-visible::before {
+        border-color: #303a44;
+        background: #151b22;
+        color: #edf1f5;
+      }
+      body.dark-mode .wiki-term:hover,
+      body.dark-mode .wiki-term:focus-visible,
+      body.dark-mode .toc-link:hover,
+      body.dark-mode .toc-link:focus-visible,
+      body.dark-mode .toc-link.is-active,
+      body.dark-mode .mobile-toc-link:hover,
+      body.dark-mode .mobile-toc-link:focus-visible,
+      body.dark-mode .mobile-toc-link.is-active,
+      body.dark-mode .contact-rail-link:hover,
+      body.dark-mode .contact-rail-link:focus-visible,
+      body.dark-mode .mobile-contact-link:hover,
+      body.dark-mode .mobile-contact-link:focus-visible {
+        background: #192536;
+      }
+      body.dark-mode .theme-toggle {
+        border-color: #3a4550;
+        color: #edf1f5;
+      }
+      body.dark-mode .theme-toggle:hover,
+      body.dark-mode .theme-toggle:focus-visible {
+        border-color: #6f91ff;
+        background: #192536;
+        color: #8ea7ff;
+      }
+      body.dark-mode input,
+      body.dark-mode textarea {
+        border-color: #39444e !important;
+        background: #0c1117 !important;
+        color: #edf1f5 !important;
+      }
+      body.dark-mode input::placeholder,
+      body.dark-mode textarea::placeholder {
+        color: #77838e !important;
+      }
+      body.dark-mode .project-toggle-icon {
+        background: #10151b;
+      }
+      body.dark-mode .mobile-contact-fab {
+        background: #edf1f5;
+        color: #10151b;
+      }
+      body.dark-mode .mobile-contact-fab:hover,
+      body.dark-mode .mobile-contact-fab:focus-visible {
+        background: #6f91ff;
+        color: #fff;
+      }
+      body.dark-mode .background-flow-base {
+        stroke: #66717b;
+        opacity: 0.26;
+      }
+      .background-flow {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .background-flow svg {
+        width: 100%;
+        height: 100%;
+      }
+      .background-flow-base {
+        fill: none;
+        stroke: #9aa4ad;
+        stroke-width: 92;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-dasharray: 1050 1350;
+        opacity: 0.2;
+        filter: drop-shadow(0 0 12px rgba(91, 101, 110, 0.12));
+        animation: active-line-travel 24s linear infinite;
+      }
+      @keyframes active-line-travel {
+        to {
+          stroke-dashoffset: -2400;
         }
       }
-    };
-  </script>
-  <style>
-    ::selection { background: #175cd3; color: #fff; }
-    .theme-toggle {
-      display: inline-flex;
-      width: 2.5rem;
-      height: 2.5rem;
-      flex: 0 0 auto;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #d9dee3;
-      border-radius: 9999px;
-      color: #191c1e;
-      transition: border-color .18s ease, background-color .18s ease, color .18s ease, transform .18s ease;
-    }
-    .theme-toggle:hover,
-    .theme-toggle:focus-visible {
-      border-color: #175cd3;
-      background: #eef4ff;
-      color: #175cd3;
-      outline: none;
-      transform: translateY(-1px);
-    }
-    body.dark-mode {
-      background-color: #080c10 !important;
-      color: #edf1f5;
-      color-scheme: dark;
-    }
-    body.dark-mode .site-nav { background: rgba(15, 20, 26, .96) !important; }
-    body.dark-mode .bg-paper { background-color: #10151b !important; }
-    body.dark-mode .bg-canvas { background-color: #171d24 !important; }
-    body.dark-mode .bg-white { background-color: #10151b !important; }
-    body.dark-mode .bg-ink { background-color: #2b3540 !important; }
-    body.dark-mode .text-ink { color: #edf1f5 !important; }
-    body.dark-mode .text-muted { color: #aab4bd !important; }
-    body.dark-mode .border-line { border-color: #303a44 !important; }
-    body.dark-mode .bg-line { background-color: #303a44 !important; }
-    body.dark-mode .border-ink { border-color: #cbd3da !important; }
-    body.dark-mode .section-rule { background: #d5dce2; }
-    body.dark-mode .page-loader,
-    body.dark-mode .mobile-menu-overlay,
-    body.dark-mode .contact-menu-overlay { background: #0f141a; }
-    body.dark-mode .loader-title { color: #edf1f5; }
-    body.dark-mode .loader-message { color: #aab4bd; }
-    body.dark-mode .loader-mark {
-      border-color: rgba(237, 241, 245, .18);
-      border-top-color: #edf1f5;
-    }
-    body.dark-mode .fullscreen-menu-header,
-    body.dark-mode .fullscreen-close,
-    body.dark-mode .wiki-preview,
-    body.dark-mode .contact-rail-link,
-    body.dark-mode .mobile-contact-link {
-      border-color: #303a44;
-    }
-    body.dark-mode .fullscreen-close { color: #edf1f5; }
-    body.dark-mode .fullscreen-close:hover,
-    body.dark-mode .fullscreen-close:focus-visible {
-      background: #edf1f5;
-      color: #10151b;
-    }
-    body.dark-mode .wiki-preview,
-    body.dark-mode .table-of-contents.is-minimized .toc-link:hover::after,
-    body.dark-mode .table-of-contents.is-minimized .toc-link:focus-visible::after,
-    body.dark-mode .contact-rail.is-minimized .contact-rail-link:hover::before,
-    body.dark-mode .contact-rail.is-minimized .contact-rail-link:focus-visible::before {
-      border-color: #303a44;
-      background: #151b22;
-      color: #edf1f5;
-    }
-    body.dark-mode .wiki-term:hover,
-    body.dark-mode .wiki-term:focus-visible,
-    body.dark-mode .toc-link:hover,
-    body.dark-mode .toc-link:focus-visible,
-    body.dark-mode .toc-link.is-active,
-    body.dark-mode .mobile-toc-link:hover,
-    body.dark-mode .mobile-toc-link:focus-visible,
-    body.dark-mode .mobile-toc-link.is-active,
-    body.dark-mode .contact-rail-link:hover,
-    body.dark-mode .contact-rail-link:focus-visible,
-    body.dark-mode .mobile-contact-link:hover,
-    body.dark-mode .mobile-contact-link:focus-visible {
-      background: #192536;
-    }
-    body.dark-mode .theme-toggle {
-      border-color: #3a4550;
-      color: #edf1f5;
-    }
-    body.dark-mode .theme-toggle:hover,
-    body.dark-mode .theme-toggle:focus-visible {
-      border-color: #6f91ff;
-      background: #192536;
-      color: #8ea7ff;
-    }
-    body.dark-mode input,
-    body.dark-mode textarea {
-      border-color: #39444e !important;
-      background: #0c1117 !important;
-      color: #edf1f5 !important;
-    }
-    body.dark-mode input::placeholder,
-    body.dark-mode textarea::placeholder { color: #77838e !important; }
-    body.dark-mode .project-toggle-icon { background: #10151b; }
-    body.dark-mode .mobile-contact-fab {
-      background: #edf1f5;
-      color: #10151b;
-    }
-    body.dark-mode .mobile-contact-fab:hover,
-    body.dark-mode .mobile-contact-fab:focus-visible {
-      background: #6f91ff;
-      color: #fff;
-    }
-    body.dark-mode .background-flow-base {
-      stroke: #66717b;
-      opacity: .26;
-    }
-    .background-flow {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    .background-flow svg {
-      width: 100%;
-      height: 100%;
-    }
-    .background-flow-base {
-      fill: none;
-      stroke: #9aa4ad;
-      stroke-width: 92;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 1050 1350;
-      opacity: .2;
-      filter: drop-shadow(0 0 12px rgba(91, 101, 110, .12));
-      animation: active-line-travel 24s linear infinite;
-    }
-    @keyframes active-line-travel {
-      to { stroke-dashoffset: -2400; }
-    }
-    main,
-    footer {
-      position: relative;
-      z-index: 1;
-    }
-    body.is-loading,
-    body.overlay-open { overflow: hidden; }
-    .page-loader {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-      padding: 2rem;
-      background: #f7f9fb;
-      text-align: center;
-      opacity: 1;
-      visibility: visible;
-      transition: opacity .45s ease, visibility .45s ease;
-    }
-    .page-loader.is-hiding {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .loader-content {
-      display: flex;
-      max-width: 38rem;
-      flex-direction: column;
-      align-items: center;
-    }
-    .loader-mark {
-      position: relative;
-      width: 3.5rem;
-      height: 3.5rem;
-      margin-bottom: 1.75rem;
-      border: 3px solid rgba(25, 28, 30, .16);
-      border-top-color: #191c1e;
-      border-radius: 9999px;
-      animation: loader-spin .85s linear infinite;
-    }
-    .loader-title {
-      font-family: "Source Serif 4", Georgia, serif;
-      color: #191c1e;
-      font-size: clamp(1.7rem, 4vw, 2.6rem);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -.02em;
-    }
-    .loader-message {
-      max-width: 31rem;
-      margin-top: .85rem;
-      color: #5f666b;
-      font-size: .92rem;
-      line-height: 1.7;
-    }
-    @keyframes loader-spin { to { transform: rotate(360deg); } }
-    .name-font { font-family: "Source Serif 4", Georgia, serif; }
-    .contact-icon { width: 1rem; height: 1rem; flex: 0 0 auto; }
-    .section-rule { height: 1px; background: #191c1e; margin: .35rem 0 1.15rem; }
-    .wiki-term {
-      position: relative;
-      display: inline-block;
-      color: #175cd3;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background-color .18s ease, color .18s ease;
-    }
-    .wiki-term:hover,
-    .wiki-term:focus-visible {
-      background: #eef4ff;
-      color: #0046ad;
-      outline: none;
-    }
-    .wiki-preview {
-      --preview-x: 0;
-      position: absolute;
-      bottom: calc(100% + .75rem);
-      left: 0;
-      z-index: 65;
-      display: block;
-      width: 20rem;
-      padding: 1rem;
-      border: 1px solid #d9dee3;
-      border-radius: .25rem;
-      background: #fff;
-      color: #191c1e;
-      font-size: .82rem;
-      font-weight: 400;
-      line-height: 1.55;
-      text-align: left;
-      text-decoration: none;
-      box-shadow: 0 12px 30px rgba(25, 28, 30, .16);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translate(var(--preview-x), 7px);
-      transition: opacity .2s ease, visibility .2s ease, transform .2s ease;
-    }
-    .wiki-term.preview-center .wiki-preview {
-      --preview-x: -50%;
-      left: 50%;
-    }
-    .wiki-term:hover .wiki-preview,
-    .wiki-term:focus-visible .wiki-preview {
-      opacity: 1;
-      visibility: visible;
-      transform: translate(var(--preview-x), 0);
-    }
-    .wiki-preview-title {
-      display: flex;
-      align-items: center;
-      gap: .45rem;
-      margin-bottom: .35rem;
-      font-family: "Source Serif 4", Georgia, serif;
-      font-size: 1rem;
-      font-weight: 700;
-    }
-    .wiki-preview-title-icon {
-      width: 1rem;
-      height: 1rem;
-      flex: 0 0 auto;
-      color: #175cd3;
-    }
-    .wiki-preview-action {
-      display: block;
-      margin-top: .65rem;
-      color: #175cd3;
-      font-size: .76rem;
-      font-weight: 700;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-    @media (max-width: 639px) {
-      .wiki-term { display: inline; }
-      .wiki-preview { display: none; }
-    }
-    .nav-dropdown .nav-submenu {
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-4px);
-      transition: opacity .18s ease, transform .18s ease, visibility .18s;
-    }
-    .nav-dropdown:hover .nav-submenu,
-    .nav-dropdown:focus-within .nav-submenu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .project-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-top: 1rem;
-      padding: .6rem 1rem;
-      border: 1px solid #175cd3;
-      border-radius: 9999px;
-      background: #175cd3;
-      color: #fff;
-      font-size: .875rem;
-      font-weight: 700;
-      box-shadow: 0 5px 14px rgba(23, 92, 211, .2);
-      transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
-    }
-    .project-toggle:hover,
-    .project-toggle:focus-visible {
-      border-color: #191c1e;
-      background: #191c1e;
-      box-shadow: 0 7px 18px rgba(25, 28, 30, .22);
-      transform: translateY(-1px);
-      outline: none;
-    }
-    .project-toggle[aria-expanded="true"] {
-      border-color: #191c1e;
-      background: #191c1e;
-    }
-    .project-toggle-icons {
-      display: inline-flex;
-      align-items: center;
-      margin-left: -.3rem;
-    }
-    .project-toggle-icon {
-      display: inline-flex;
-      width: 1.65rem;
-      height: 1.65rem;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid currentColor;
-      border-radius: 9999px;
-      background: #fff;
-      color: #175cd3;
-    }
-    .project-toggle-icon + .project-toggle-icon {
-      margin-left: -.48rem;
-    }
-    .project-toggle-icon:first-child {
-      position: relative;
-      z-index: 1;
-    }
-    section { scroll-margin-top: 6rem; }
-    .table-of-contents { display: none; }
-    .contact-rail { display: none; }
-    .toc-heading {
-      transition: opacity .2s ease, max-height .25s ease, margin .25s ease;
-      max-height: 2rem;
-      overflow: hidden;
-    }
-    .toc-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      padding: .5rem .75rem;
-      border-left: 2px solid #d9dee3;
-      color: #5f666b;
-      font-size: .82rem;
-      line-height: 1.35;
-      transition: border-color .18s ease, background-color .18s ease, color .18s ease, padding-left .18s ease;
-    }
-    .toc-link > span { transition: opacity .15s ease; }
-    .toc-link:hover,
-    .toc-link:focus-visible {
-      border-left-color: #175cd3;
-      background: #f4f6f8;
-      color: #175cd3;
-      outline: none;
-    }
-    .toc-link.is-active {
-      border-left-color: #175cd3;
-      background: #eef4ff;
-      color: #175cd3;
-      font-weight: 700;
-      padding-left: 1rem;
-    }
-    .toc-icon {
-      width: 1rem;
-      height: 1rem;
-      flex: 0 0 auto;
-    }
-    .table-of-contents.is-minimized .toc-heading {
-      max-height: 0;
-      margin: 0;
-      opacity: 0;
-    }
-    .table-of-contents.is-minimized .toc-link {
-      width: 3.25rem;
-      justify-content: center;
-      gap: 0;
-      padding: .7rem;
-    }
-    .table-of-contents.is-minimized .toc-link > span { display: none; }
-    .table-of-contents.is-minimized .toc-link:hover::after,
-    .table-of-contents.is-minimized .toc-link:focus-visible::after {
-      content: attr(data-label);
-      position: absolute;
-      top: 50%;
-      left: calc(100% + .55rem);
-      z-index: 50;
-      width: max-content;
-      max-width: 15rem;
-      padding: .45rem .7rem;
-      border: 1px solid #d9dee3;
-      border-radius: .35rem;
-      background: #fff;
-      color: #191c1e;
-      font-size: .78rem;
-      font-weight: 600;
-      line-height: 1.3;
-      box-shadow: 0 7px 18px rgba(25, 28, 30, .12);
-      transform: translateY(-50%);
-      white-space: nowrap;
-    }
-    .contact-heading {
-      max-height: 2rem;
-      overflow: hidden;
-      transition: opacity .2s ease, max-height .25s ease, margin .25s ease;
-    }
-    .contact-rail-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      padding: .5rem .75rem;
-      border-right: 2px solid #d9dee3;
-      color: #5f666b;
-      font-size: .82rem;
-      line-height: 1.35;
-      transition: border-color .18s ease, background-color .18s ease, color .18s ease;
-    }
-    .contact-rail-link > span {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-    .contact-rail-link:hover,
-    .contact-rail-link:focus-visible {
-      border-right-color: #175cd3;
-      background: #eef4ff;
-      color: #175cd3;
-      outline: none;
-    }
-    .contact-rail.is-minimized .contact-heading {
-      max-height: 0;
-      margin: 0;
-      opacity: 0;
-    }
-    .contact-rail.is-minimized .contact-rail-link {
-      width: 3.25rem;
-      justify-content: center;
-      gap: 0;
-      padding: .7rem;
-    }
-    .contact-rail.is-minimized .contact-rail-link > span { display: none; }
-    .contact-rail.is-minimized .contact-rail-link:hover::before,
-    .contact-rail.is-minimized .contact-rail-link:focus-visible::before {
-      content: attr(data-label);
-      position: absolute;
-      top: 50%;
-      right: calc(100% + .55rem);
-      z-index: 50;
-      width: max-content;
-      max-width: 16rem;
-      padding: .45rem .7rem;
-      border: 1px solid #d9dee3;
-      border-radius: .35rem;
-      background: #fff;
-      color: #191c1e;
-      font-size: .78rem;
-      font-weight: 600;
-      line-height: 1.3;
-      box-shadow: 0 7px 18px rgba(25, 28, 30, .12);
-      transform: translateY(-50%);
-      white-space: nowrap;
-    }
-    .mobile-toc-link {
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-      padding: .7rem .85rem;
-      border-left: 2px solid #d9dee3;
-      color: #5f666b;
-      font-size: .9rem;
-      line-height: 1.35;
-      transition: border-color .18s ease, background-color .18s ease, color .18s ease;
-    }
-    .mobile-toc-link:hover,
-    .mobile-toc-link:focus-visible,
-    .mobile-toc-link.is-active {
-      border-left-color: #175cd3;
-      background: #eef4ff;
-      color: #175cd3;
-      outline: none;
-    }
-    .mobile-toc-link.is-active { font-weight: 700; }
-    .mobile-menu-overlay,
-    .contact-menu-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 70;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: scale(.985) translateY(10px);
-      transition: opacity .28s ease, visibility .28s ease, transform .28s ease;
-    }
-    .mobile-menu-overlay.is-open,
-    .contact-menu-overlay.is-open {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: scale(1) translateY(0);
-    }
-    .fullscreen-menu-header {
-      display: flex;
-      min-height: 4.5rem;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.25rem;
-      border-bottom: 1px solid #d9dee3;
-    }
-    .fullscreen-menu-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.5rem 1.25rem 2rem;
-    }
-    .fullscreen-close {
-      display: inline-flex;
-      width: 2.75rem;
-      height: 2.75rem;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #d9dee3;
-      border-radius: 9999px;
-      color: #191c1e;
-      transition: border-color .18s ease, background-color .18s ease, color .18s ease;
-    }
-    .fullscreen-close:hover,
-    .fullscreen-close:focus-visible {
-      border-color: #191c1e;
-      background: #191c1e;
-      color: #fff;
-      outline: none;
-    }
-    .mobile-contact-link {
-      display: flex;
-      align-items: center;
-      gap: .85rem;
-      padding: .9rem 1rem;
-      border-bottom: 1px solid #d9dee3;
-      color: #191c1e;
-      font-size: .95rem;
-      font-weight: 600;
-      transition: background-color .18s ease, color .18s ease;
-    }
-    .mobile-contact-link:hover,
-    .mobile-contact-link:focus-visible {
-      background: #eef4ff;
-      color: #175cd3;
-      outline: none;
-    }
-    .mobile-contact-fab {
-      position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 45;
-      display: inline-flex;
-      width: 3.5rem;
-      height: 3.5rem;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9999px;
-      background: #191c1e;
-      color: #fff;
-      box-shadow: 0 10px 28px rgba(25, 28, 30, .28);
-      transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease;
-    }
-    .mobile-contact-fab:hover,
-    .mobile-contact-fab:focus-visible {
-      background: #175cd3;
-      box-shadow: 0 12px 32px rgba(23, 92, 211, .3);
-      transform: translateY(-2px);
-      outline: none;
-    }
-    .section-header-animate {
-      animation: section-header-in .38s ease both;
-    }
-    @keyframes section-header-in {
-      from { opacity: 0; transform: translateY(7px); filter: blur(2px); }
-      to { opacity: 1; transform: translateY(0); filter: blur(0); }
-    }
-    @media (min-width: 1500px) {
+      main,
+      footer {
+        position: relative;
+        z-index: 1;
+      }
+      body.is-loading,
+      body.overlay-open {
+        overflow: hidden;
+      }
+      .page-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        background: #f7f9fb;
+        text-align: center;
+        opacity: 1;
+        visibility: visible;
+        transition:
+          opacity 0.45s ease,
+          visibility 0.45s ease;
+      }
+      .page-loader.is-hiding {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .loader-content {
+        display: flex;
+        max-width: 38rem;
+        flex-direction: column;
+        align-items: center;
+      }
+      .loader-mark {
+        position: relative;
+        width: 3.5rem;
+        height: 3.5rem;
+        margin-bottom: 1.75rem;
+        border: 3px solid rgba(25, 28, 30, 0.16);
+        border-top-color: #191c1e;
+        border-radius: 9999px;
+        animation: loader-spin 0.85s linear infinite;
+      }
+      .loader-title {
+        font-family: "Source Serif 4", Georgia, serif;
+        color: #191c1e;
+        font-size: clamp(1.7rem, 4vw, 2.6rem);
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+      .loader-message {
+        max-width: 31rem;
+        margin-top: 0.85rem;
+        color: #5f666b;
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+      @keyframes loader-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .name-font {
+        font-family: "Source Serif 4", Georgia, serif;
+      }
+      .contact-icon {
+        width: 1rem;
+        height: 1rem;
+        flex: 0 0 auto;
+      }
+      .section-rule {
+        height: 1px;
+        background: #191c1e;
+        margin: 0.35rem 0 1.15rem;
+      }
+      .wiki-term {
+        position: relative;
+        display: inline-block;
+        color: #175cd3;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          background-color 0.18s ease,
+          color 0.18s ease;
+      }
+      .wiki-term:hover,
+      .wiki-term:focus-visible {
+        background: #eef4ff;
+        color: #0046ad;
+        outline: none;
+      }
+      .wiki-preview {
+        --preview-x: 0;
+        position: absolute;
+        bottom: calc(100% + 0.75rem);
+        left: 0;
+        z-index: 65;
+        display: block;
+        width: 20rem;
+        padding: 1rem;
+        border: 1px solid #d9dee3;
+        border-radius: 0.25rem;
+        background: #fff;
+        color: #191c1e;
+        font-size: 0.82rem;
+        font-weight: 400;
+        line-height: 1.55;
+        text-align: left;
+        text-decoration: none;
+        box-shadow: 0 12px 30px rgba(25, 28, 30, 0.16);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(var(--preview-x), 7px);
+        transition:
+          opacity 0.2s ease,
+          visibility 0.2s ease,
+          transform 0.2s ease;
+      }
+      .wiki-term.preview-center .wiki-preview {
+        --preview-x: -50%;
+        left: 50%;
+      }
+      .wiki-term:hover .wiki-preview,
+      .wiki-term:focus-visible .wiki-preview {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(var(--preview-x), 0);
+      }
+      .wiki-preview-title {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-bottom: 0.35rem;
+        font-family: "Source Serif 4", Georgia, serif;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+      .wiki-preview-title-icon {
+        width: 1rem;
+        height: 1rem;
+        flex: 0 0 auto;
+        color: #175cd3;
+      }
+      .wiki-preview-action {
+        display: block;
+        margin-top: 0.65rem;
+        color: #175cd3;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      @media (max-width: 639px) {
+        .wiki-term {
+          display: inline;
+        }
+        .wiki-preview {
+          display: none;
+        }
+      }
+      .nav-dropdown .nav-submenu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4px);
+        transition:
+          opacity 0.18s ease,
+          transform 0.18s ease,
+          visibility 0.18s;
+      }
+      .nav-dropdown:hover .nav-submenu,
+      .nav-dropdown:focus-within .nav-submenu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .project-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding: 0.6rem 1rem;
+        border: 1px solid #175cd3;
+        border-radius: 9999px;
+        background: #175cd3;
+        color: #fff;
+        font-size: 0.875rem;
+        font-weight: 700;
+        box-shadow: 0 5px 14px rgba(23, 92, 211, 0.2);
+        transition:
+          background-color 0.18s ease,
+          border-color 0.18s ease,
+          box-shadow 0.18s ease,
+          transform 0.18s ease;
+      }
+      .project-toggle:hover,
+      .project-toggle:focus-visible {
+        border-color: #191c1e;
+        background: #191c1e;
+        box-shadow: 0 7px 18px rgba(25, 28, 30, 0.22);
+        transform: translateY(-1px);
+        outline: none;
+      }
+      .project-toggle[aria-expanded="true"] {
+        border-color: #191c1e;
+        background: #191c1e;
+      }
+      .project-toggle-icons {
+        display: inline-flex;
+        align-items: center;
+        margin-left: -0.3rem;
+      }
+      .project-toggle-icon {
+        display: inline-flex;
+        width: 1.65rem;
+        height: 1.65rem;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid currentColor;
+        border-radius: 9999px;
+        background: #fff;
+        color: #175cd3;
+      }
+      .project-toggle-icon + .project-toggle-icon {
+        margin-left: -0.48rem;
+      }
+      .project-toggle-icon:first-child {
+        position: relative;
+        z-index: 1;
+      }
+      section {
+        scroll-margin-top: 6rem;
+      }
       .table-of-contents {
-        position: fixed;
-        top: 6rem;
-        left: 1rem;
-        z-index: 30;
-        display: block;
-        width: 210px;
-        max-height: calc(100vh - 8rem);
-        overflow: visible;
-        transition: width .28s ease;
+        display: none;
       }
-      .table-of-contents.is-minimized { width: 3.25rem; }
       .contact-rail {
-        position: fixed;
-        top: 6rem;
-        right: 1rem;
-        z-index: 30;
-        display: block;
-        width: 210px;
-        max-height: calc(100vh - 8rem);
-        overflow: visible;
-        transition: width .28s ease;
+        display: none;
       }
-      .contact-rail.is-minimized { width: 3.25rem; }
-      .mobile-contact-fab { display: none; }
-    }
-    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s ease, transform .55s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto !important; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .section-header-animate { animation: none; }
-      .loader-mark { animation: none; }
+      .toc-heading {
+        transition:
+          opacity 0.2s ease,
+          max-height 0.25s ease,
+          margin 0.25s ease;
+        max-height: 2rem;
+        overflow: hidden;
+      }
+      .toc-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.5rem 0.75rem;
+        border-left: 2px solid #d9dee3;
+        color: #5f666b;
+        font-size: 0.82rem;
+        line-height: 1.35;
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease,
+          padding-left 0.18s ease;
+      }
+      .toc-link > span {
+        transition: opacity 0.15s ease;
+      }
+      .toc-link:hover,
+      .toc-link:focus-visible {
+        border-left-color: #175cd3;
+        background: #f4f6f8;
+        color: #175cd3;
+        outline: none;
+      }
+      .toc-link.is-active {
+        border-left-color: #175cd3;
+        background: #eef4ff;
+        color: #175cd3;
+        font-weight: 700;
+        padding-left: 1rem;
+      }
+      .toc-icon {
+        width: 1rem;
+        height: 1rem;
+        flex: 0 0 auto;
+      }
+      .table-of-contents.is-minimized .toc-heading {
+        max-height: 0;
+        margin: 0;
+        opacity: 0;
+      }
+      .table-of-contents.is-minimized .toc-link {
+        width: 3.25rem;
+        justify-content: center;
+        gap: 0;
+        padding: 0.7rem;
+      }
+      .table-of-contents.is-minimized .toc-link > span {
+        display: none;
+      }
+      .table-of-contents.is-minimized .toc-link:hover::after,
+      .table-of-contents.is-minimized .toc-link:focus-visible::after {
+        content: attr(data-label);
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 0.55rem);
+        z-index: 50;
+        width: max-content;
+        max-width: 15rem;
+        padding: 0.45rem 0.7rem;
+        border: 1px solid #d9dee3;
+        border-radius: 0.35rem;
+        background: #fff;
+        color: #191c1e;
+        font-size: 0.78rem;
+        font-weight: 600;
+        line-height: 1.3;
+        box-shadow: 0 7px 18px rgba(25, 28, 30, 0.12);
+        transform: translateY(-50%);
+        white-space: nowrap;
+      }
+      .contact-heading {
+        max-height: 2rem;
+        overflow: hidden;
+        transition:
+          opacity 0.2s ease,
+          max-height 0.25s ease,
+          margin 0.25s ease;
+      }
+      .contact-rail-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.5rem 0.75rem;
+        border-right: 2px solid #d9dee3;
+        color: #5f666b;
+        font-size: 0.82rem;
+        line-height: 1.35;
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease;
+      }
+      .contact-rail-link > span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      .contact-rail-link:hover,
+      .contact-rail-link:focus-visible {
+        border-right-color: #175cd3;
+        background: #eef4ff;
+        color: #175cd3;
+        outline: none;
+      }
+      .contact-rail.is-minimized .contact-heading {
+        max-height: 0;
+        margin: 0;
+        opacity: 0;
+      }
+      .contact-rail.is-minimized .contact-rail-link {
+        width: 3.25rem;
+        justify-content: center;
+        gap: 0;
+        padding: 0.7rem;
+      }
+      .contact-rail.is-minimized .contact-rail-link > span {
+        display: none;
+      }
+      .contact-rail.is-minimized .contact-rail-link:hover::before,
+      .contact-rail.is-minimized .contact-rail-link:focus-visible::before {
+        content: attr(data-label);
+        position: absolute;
+        top: 50%;
+        right: calc(100% + 0.55rem);
+        z-index: 50;
+        width: max-content;
+        max-width: 16rem;
+        padding: 0.45rem 0.7rem;
+        border: 1px solid #d9dee3;
+        border-radius: 0.35rem;
+        background: #fff;
+        color: #191c1e;
+        font-size: 0.78rem;
+        font-weight: 600;
+        line-height: 1.3;
+        box-shadow: 0 7px 18px rgba(25, 28, 30, 0.12);
+        transform: translateY(-50%);
+        white-space: nowrap;
+      }
+      .mobile-toc-link {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.7rem 0.85rem;
+        border-left: 2px solid #d9dee3;
+        color: #5f666b;
+        font-size: 0.9rem;
+        line-height: 1.35;
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease;
+      }
+      .mobile-toc-link:hover,
+      .mobile-toc-link:focus-visible,
+      .mobile-toc-link.is-active {
+        border-left-color: #175cd3;
+        background: #eef4ff;
+        color: #175cd3;
+        outline: none;
+      }
+      .mobile-toc-link.is-active {
+        font-weight: 700;
+      }
       .mobile-menu-overlay,
-      .contact-menu-overlay { transition: none; }
-      .background-flow-base { animation: none; }
-    }
-    @media (min-width: 768px) {
-      .mobile-menu-overlay { display: none; }
-    }
-    @media print {
-      .no-print { display: none !important; }
-      body { background: #fff !important; }
-      main { box-shadow: none !important; max-width: none !important; padding: 0 !important; }
-      section, article { break-inside: avoid; }
-      a { color: inherit !important; text-decoration: none !important; }
-    }
-  </style>
-</head>
-<body class="is-loading bg-canvas font-sans text-ink antialiased" aria-busy="true">
-  <div class="page-loader" id="page-loader" role="status" aria-live="polite" aria-label="Portfolio loading">
-    <div class="loader-content">
-      <div class="loader-mark" aria-hidden="true"></div>
-      <h1 class="loader-title">Welcome</h1>
-      <p class="loader-message">Please wait</p>
-    </div>
-  </div>
-  <noscript><style>#page-loader { display: none; } body.is-loading { overflow: auto; }</style></noscript>
-
-  <div class="background-flow no-print" aria-hidden="true">
-    <svg viewBox="0 0 1600 1100" preserveAspectRatio="none">
-      <path class="background-flow-base" pathLength="2400" d="M-150 120C95 25 330 75 420 240C535 455 915 115 1245 180C1510 230 1665 430 1440 555C1210 680 1055 420 1240 330C1445 230 1655 525 1520 770C1395 995 1120 930 895 840C650 740 505 1050 225 970C-35 895-115 660 95 570C300 480 455 690 320 810C180 935-55 775-100 585C-150 375 85 265 315 340C570 425 735 635 995 515"/>
-    </svg>
-  </div>
-
-  <nav class="site-nav no-print fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 backdrop-blur">
-    <div class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3.5">
-      <a class="font-serif text-lg font-bold tracking-wide md:w-48" href="#top">VISHWA BANDARA</a>
-      <div class="hidden min-w-0 flex-1 justify-center px-4 md:flex" aria-live="polite" aria-atomic="true">
-        <span class="section-header-animate truncate font-serif text-base font-bold text-ink" id="section-header">Welcome</span>
+      .contact-menu-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(0.985) translateY(10px);
+        transition:
+          opacity 0.28s ease,
+          visibility 0.28s ease,
+          transform 0.28s ease;
+      }
+      .mobile-menu-overlay.is-open,
+      .contact-menu-overlay.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: scale(1) translateY(0);
+      }
+      .fullscreen-menu-header {
+        display: flex;
+        min-height: 4.5rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 1.25rem;
+        border-bottom: 1px solid #d9dee3;
+      }
+      .fullscreen-menu-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem 1.25rem 2rem;
+      }
+      .fullscreen-close {
+        display: inline-flex;
+        width: 2.75rem;
+        height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #d9dee3;
+        border-radius: 9999px;
+        color: #191c1e;
+        transition:
+          border-color 0.18s ease,
+          background-color 0.18s ease,
+          color 0.18s ease;
+      }
+      .fullscreen-close:hover,
+      .fullscreen-close:focus-visible {
+        border-color: #191c1e;
+        background: #191c1e;
+        color: #fff;
+        outline: none;
+      }
+      .mobile-contact-link {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.9rem 1rem;
+        border-bottom: 1px solid #d9dee3;
+        color: #191c1e;
+        font-size: 0.95rem;
+        font-weight: 600;
+        transition:
+          background-color 0.18s ease,
+          color 0.18s ease;
+      }
+      .mobile-contact-link:hover,
+      .mobile-contact-link:focus-visible {
+        background: #eef4ff;
+        color: #175cd3;
+        outline: none;
+      }
+      .mobile-contact-fab {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 45;
+        display: inline-flex;
+        width: 3.5rem;
+        height: 3.5rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        background: #191c1e;
+        color: #fff;
+        box-shadow: 0 10px 28px rgba(25, 28, 30, 0.28);
+        transition:
+          background-color 0.18s ease,
+          box-shadow 0.18s ease,
+          transform 0.18s ease;
+      }
+      .mobile-contact-fab:hover,
+      .mobile-contact-fab:focus-visible {
+        background: #175cd3;
+        box-shadow: 0 12px 32px rgba(23, 92, 211, 0.3);
+        transform: translateY(-2px);
+        outline: none;
+      }
+      .section-header-animate {
+        animation: section-header-in 0.38s ease both;
+      }
+      @keyframes section-header-in {
+        from {
+          opacity: 0;
+          transform: translateY(7px);
+          filter: blur(2px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+          filter: blur(0);
+        }
+      }
+      @media (min-width: 1500px) {
+        .table-of-contents {
+          position: fixed;
+          top: 6rem;
+          left: 1rem;
+          z-index: 30;
+          display: block;
+          width: 210px;
+          max-height: calc(100vh - 8rem);
+          overflow: visible;
+          transition: width 0.28s ease;
+        }
+        .table-of-contents.is-minimized {
+          width: 3.25rem;
+        }
+        .contact-rail {
+          position: fixed;
+          top: 6rem;
+          right: 1rem;
+          z-index: 30;
+          display: block;
+          width: 210px;
+          max-height: calc(100vh - 8rem);
+          overflow: visible;
+          transition: width 0.28s ease;
+        }
+        .contact-rail.is-minimized {
+          width: 3.25rem;
+        }
+        .mobile-contact-fab {
+          display: none;
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .section-header-animate {
+          animation: none;
+        }
+        .loader-mark {
+          animation: none;
+        }
+        .mobile-menu-overlay,
+        .contact-menu-overlay {
+          transition: none;
+        }
+        .background-flow-base {
+          animation: none;
+        }
+      }
+      @media (min-width: 768px) {
+        .mobile-menu-overlay {
+          display: none;
+        }
+      }
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        body {
+          background: #fff !important;
+        }
+        main {
+          box-shadow: none !important;
+          max-width: none !important;
+          padding: 0 !important;
+        }
+        section,
+        article {
+          break-inside: avoid;
+        }
+        a {
+          color: inherit !important;
+          text-decoration: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="is-loading bg-canvas font-sans text-ink antialiased"
+    aria-busy="true"
+  >
+    <div
+      class="page-loader"
+      id="page-loader"
+      role="status"
+      aria-live="polite"
+      aria-label="Portfolio loading"
+    >
+      <div class="loader-content">
+        <div class="loader-mark" aria-hidden="true"></div>
+        <h1 class="loader-title">Welcome</h1>
+        <p class="loader-message">Please wait</p>
       </div>
-      <div class="hidden items-center gap-2 md:flex md:w-48">
-        <a class="inline-flex flex-1 justify-center rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent" href="Vishwa-Bandara-CV.pdf" download>
-          Download CV
-        </a>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
-          <svg class="h-5 w-5" data-theme-moon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+    </div>
+    <noscript
+      ><style>
+        #page-loader {
+          display: none;
+        }
+        body.is-loading {
+          overflow: auto;
+        }
+      </style></noscript
+    >
+
+    <div class="background-flow no-print" aria-hidden="true">
+      <svg viewBox="0 0 1600 1100" preserveAspectRatio="none">
+        <path
+          class="background-flow-base"
+          pathLength="2400"
+          d="M-150 120C95 25 330 75 420 240C535 455 915 115 1245 180C1510 230 1665 430 1440 555C1210 680 1055 420 1240 330C1445 230 1655 525 1520 770C1395 995 1120 930 895 840C650 740 505 1050 225 970C-35 895-115 660 95 570C300 480 455 690 320 810C180 935-55 775-100 585C-150 375 85 265 315 340C570 425 735 635 995 515"
+        />
+      </svg>
+    </div>
+
+    <nav
+      class="site-nav no-print fixed inset-x-0 top-0 z-50 border-b border-line bg-white/95 backdrop-blur"
+    >
+      <div
+        class="mx-auto flex max-w-5xl items-center justify-between gap-4 px-5 py-3.5"
+      >
+        <a
+          class="font-serif text-lg font-bold tracking-wide md:w-48"
+          href="#top"
+          >VISHWA BANDARA</a
+        >
+        <div
+          class="hidden min-w-0 flex-1 justify-center px-4 md:flex"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <span
+            class="section-header-animate truncate font-serif text-base font-bold text-ink"
+            id="section-header"
+            >Welcome</span
+          >
+        </div>
+        <div class="hidden items-center gap-2 md:flex md:w-48">
+          <a
+            class="inline-flex flex-1 justify-center rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent"
+            href="Vishwa-Bandara-CV.pdf"
+            download
+          >
+            Download CV
+          </a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to dark mode"
+            aria-pressed="false"
+          >
+            <svg
+              class="h-5 w-5"
+              data-theme-moon
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"
+              ></path>
+            </svg>
+            <svg
+              class="hidden h-5 w-5"
+              data-theme-sun
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path
+                d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <button
+          class="theme-toggle md:hidden"
+          type="button"
+          data-theme-toggle
+          aria-label="Switch to dark mode"
+          aria-pressed="false"
+        >
+          <svg
+            class="h-5 w-5"
+            data-theme-moon
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path
+              d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"
+            ></path>
           </svg>
-          <svg class="hidden h-5 w-5" data-theme-sun viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <svg
+            class="hidden h-5 w-5"
+            data-theme-sun
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
             <circle cx="12" cy="12" r="3.5"></circle>
-            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+            <path
+              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+            ></path>
+          </svg>
+        </button>
+        <button
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition hover:border-accent hover:text-accent md:hidden"
+          id="menu-toggle"
+          type="button"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <svg
+            class="h-5 w-5"
+            id="menu-open-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+          <svg
+            class="hidden h-5 w-5"
+            id="menu-close-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="m6 6 12 12M18 6 6 18"></path>
           </svg>
         </button>
       </div>
-      <button class="theme-toggle md:hidden" type="button" data-theme-toggle aria-label="Switch to dark mode" aria-pressed="false">
-        <svg class="h-5 w-5" data-theme-moon viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
-        </svg>
-        <svg class="hidden h-5 w-5" data-theme-sun viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <circle cx="12" cy="12" r="3.5"></circle>
-          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-        </svg>
-      </button>
-      <button class="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink transition hover:border-accent hover:text-accent md:hidden" id="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
-        <svg class="h-5 w-5" id="menu-open-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16"></path>
-        </svg>
-        <svg class="hidden h-5 w-5" id="menu-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="m6 6 12 12M18 6 6 18"></path>
-        </svg>
-      </button>
-    </div>
-  </nav>
+    </nav>
 
-  <div class="mobile-menu-overlay no-print" id="mobile-menu" aria-hidden="true">
-    <div class="fullscreen-menu-header">
-      <span class="font-serif text-lg font-bold tracking-wide">VISHWA BANDARA</span>
-      <button class="fullscreen-close" id="mobile-menu-close" type="button" aria-label="Close navigation menu">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="m6 6 12 12M18 6 6 18"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="fullscreen-menu-body">
-      <div class="mx-auto max-w-lg">
-        <div class="mb-4 flex items-center gap-3">
-          <span class="h-px flex-1 bg-line"></span>
-          <h2 class="text-xs font-bold uppercase tracking-[.16em] text-ink">Contents</h2>
+    <div
+      class="mobile-menu-overlay no-print"
+      id="mobile-menu"
+      aria-hidden="true"
+    >
+      <div class="fullscreen-menu-header">
+        <span class="font-serif text-lg font-bold tracking-wide"
+          >VISHWA BANDARA</span
+        >
+        <button
+          class="fullscreen-close"
+          id="mobile-menu-close"
+          type="button"
+          aria-label="Close navigation menu"
+        >
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="m6 6 12 12M18 6 6 18"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="fullscreen-menu-body">
+        <div class="mx-auto max-w-lg">
+          <div class="mb-4 flex items-center gap-3">
+            <span class="h-px flex-1 bg-line"></span>
+            <h2 class="text-xs font-bold uppercase tracking-[.16em] text-ink">
+              Contents
+            </h2>
+          </div>
+          <nav
+            class="flex flex-col"
+            id="mobile-toc"
+            aria-label="Mobile page sections"
+          ></nav>
+          <a
+            class="mt-6 flex items-center justify-center rounded-full bg-ink px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent"
+            href="Vishwa-Bandara-CV.pdf"
+            download
+            >Download CV</a
+          >
         </div>
-        <nav class="flex flex-col" id="mobile-toc" aria-label="Mobile page sections"></nav>
-        <a class="mt-6 flex items-center justify-center rounded-full bg-ink px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent" href="Vishwa-Bandara-CV.pdf" download>Download CV</a>
       </div>
     </div>
-  </div>
 
-  <aside class="table-of-contents no-print" aria-label="Table of contents">
-    <div class="toc-heading mb-3 flex items-center gap-2">
-      <span class="h-px flex-1 bg-line"></span>
-      <h2 class="text-xs font-bold uppercase tracking-[.16em] text-ink">Contents</h2>
-    </div>
-    <nav aria-label="Page sections">
-      <a class="toc-link is-active" href="#summary" aria-current="true">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M6 3h9l3 3v15H6zM14 3v4h4M9 12h6M9 16h6"></path>
-        </svg>
-        <span>Professional Summary</span>
-      </a>
-      <a class="toc-link" href="#experience">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <rect x="3" y="7" width="18" height="13" rx="2"></rect>
-          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"></path>
-        </svg>
-        <span>Experience</span>
-      </a>
-      <a class="toc-link" href="#projects">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M3 6h7l2 2h9v11H3z"></path>
-          <path d="m9 12-2 2 2 2M15 12l2 2-2 2"></path>
-        </svg>
-        <span>Personal Projects</span>
-      </a>
-      <a class="toc-link" href="#articles">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22z"></path>
-        </svg>
-        <span>Articles &amp; Publications</span>
-      </a>
-      <a class="toc-link" href="#skills">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <rect x="7" y="7" width="10" height="10" rx="2"></rect>
-          <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3M10 10h4v4h-4z"></path>
-        </svg>
-        <span>Technical Skills</span>
-      </a>
-      <a class="toc-link" href="#education">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="m2 9 10-5 10 5-10 5zM6 11.5V17c3.5 2.5 8.5 2.5 12 0v-5.5M22 9v7"></path>
-        </svg>
-        <span>Professional Education</span>
-      </a>
-      <a class="toc-link" href="#awards">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M12 13v4M8 21h8M9 17h6v4H9z"></path>
-        </svg>
-        <span>Awards &amp; Honors</span>
-      </a>
-      <a class="toc-link" href="#certifications">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <circle cx="12" cy="9" r="6"></circle>
-          <path d="m9 14-1 8 4-2 4 2-1-8M9.5 9l1.5 1.5L14.5 7"></path>
-        </svg>
-        <span>Certifications &amp; Courses</span>
-      </a>
-      <a class="toc-link" href="#additional">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"></circle>
-          <path d="M12 11v6M12 7h.01"></path>
-        </svg>
-        <span>Additional Information</span>
-      </a>
-      <a class="toc-link" href="#contact">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-          <path d="m3 7 9 6 9-6"></path>
-        </svg>
-        <span>Contact</span>
-      </a>
-    </nav>
-  </aside>
-
-  <aside class="contact-rail no-print" aria-label="Contact details">
-    <div class="contact-heading mb-3 flex items-center gap-2">
-      <h2 class="text-xs font-bold uppercase tracking-[.16em] text-ink">Contact</h2>
-      <span class="h-px flex-1 bg-line"></span>
-    </div>
-    <nav aria-label="Contact links">
-      <a class="contact-rail-link" href="tel:+94760678411">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"></path>
-        </svg>
-        <span>+94 76 067 8411</span>
-      </a>
-      <a class="contact-rail-link" href="mailto:vishwaaloka16@gmail.com">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-          <path d="m3 7 9 6 9-6"></path>
-        </svg>
-        <span>Email</span>
-      </a>
-      <a class="contact-rail-link" href="https://github.com/vishwa-aloka-16" target="_blank" rel="noreferrer">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path>
-        </svg>
-        <span>GitHub</span>
-      </a>
-      <a class="contact-rail-link" href="https://www.linkedin.com/in/vishwaaloka" target="_blank" rel="noreferrer">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M5.34 3.5A2.34 2.34 0 1 1 5.33 8.2a2.34 2.34 0 0 1 0-4.68ZM3.32 9.72h4.03V21H3.32V9.72Zm6.54 0h3.87v1.54h.05c.54-1.02 1.86-2.1 3.83-2.1 4.1 0 4.86 2.7 4.86 6.21V21h-4.03v-4.99c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4.03V9.72Z"></path>
-        </svg>
-        <span>LinkedIn</span>
-      </a>
-      <a class="contact-rail-link" href="https://medium.com/@vishwaaloka16" target="_blank" rel="noreferrer">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M2 5.5a.65.65 0 0 0-.22-.55L.22 3.07V2.8h6.1l4.72 10.35L15.2 2.8H21v.27l-1.33 1.28a.39.39 0 0 0-.15.37v14.56a.39.39 0 0 0 .15.37l1.3 1.28v.27h-6.56v-.27l1.35-1.31c.13-.13.13-.17.13-.37V7.47L12.14 21.2h-.5L7.27 7.47v9.9a.88.88 0 0 0 .24.73l1.75 2.13v.27H4.3v-.27l1.75-2.13a.85.85 0 0 0 .22-.73V5.5Z"></path>
-        </svg>
-        <span>Medium</span>
-      </a>
-      <a class="contact-rail-link" href="https://x.com/VishwaAlokaX" target="_blank" rel="noreferrer">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="m5 4 14 16M19 4 5 20"></path>
-        </svg>
-        <span>X / Twitter</span>
-      </a>
-      <a class="contact-rail-link" href="https://instagram.com/vishwa_aloka" target="_blank" rel="noreferrer">
-        <svg class="toc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-          <circle cx="12" cy="12" r="4"></circle>
-          <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"></circle>
-        </svg>
-        <span>Instagram</span>
-      </a>
-    </nav>
-  </aside>
-
-  <button class="mobile-contact-fab no-print" id="contact-menu-toggle" type="button" aria-controls="contact-menu" aria-expanded="false" aria-label="Open contact menu">
-    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
-      <path d="M8 9h8M8 13h5"></path>
-    </svg>
-  </button>
-
-  <div class="contact-menu-overlay no-print" id="contact-menu" aria-hidden="true">
-    <div class="fullscreen-menu-header">
-      <span class="font-serif text-lg font-bold tracking-wide">CONTACT</span>
-      <button class="fullscreen-close" id="contact-menu-close" type="button" aria-label="Close contact menu">
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="m6 6 12 12M18 6 6 18"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="fullscreen-menu-body">
-      <div class="mx-auto max-w-lg">
-        <div class="mb-5">
-          <p class="text-xs font-bold uppercase tracking-[.16em] text-accent">Let’s connect</p>
-          <h2 class="mt-2 font-serif text-3xl font-bold">Choose how to reach me</h2>
-        </div>
-        <nav class="flex flex-col" id="mobile-contact-links" aria-label="Mobile contact links"></nav>
-        <a class="mt-6 flex items-center justify-center rounded-full bg-ink px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent" href="#contact" id="contact-form-link">Open Contact Form</a>
+    <aside class="table-of-contents no-print" aria-label="Table of contents">
+      <div class="toc-heading mb-3 flex items-center gap-2">
+        <span class="h-px flex-1 bg-line"></span>
+        <h2 class="text-xs font-bold uppercase tracking-[.16em] text-ink">
+          Contents
+        </h2>
       </div>
-    </div>
-  </div>
-
-  <main class="mx-auto min-h-screen max-w-5xl bg-paper px-5 pb-20 pt-28 shadow-sm sm:px-10 lg:px-14" id="top">
-    <header class="mb-12 border-b border-line pb-10 text-center">
-      <h1 class="name-font text-4xl font-bold tracking-tight sm:text-5xl">Vishwa Bandara</h1>
-      <div class="mt-7 flex flex-wrap justify-center gap-x-5 gap-y-3 text-sm text-muted">
-        <span class="flex items-center gap-1.5">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
-            <circle cx="12" cy="10" r="2.5"></circle>
+      <nav aria-label="Page sections">
+        <a class="toc-link is-active" href="#summary" aria-current="true">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M6 3h9l3 3v15H6zM14 3v4h4M9 12h6M9 16h6"></path>
           </svg>
-          Colombo, Sri Lanka
-        </span>
-        <a class="flex items-center gap-1.5 text-accent hover:underline" href="tel:+94760678411">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"></path>
-          </svg>
-          +94 76 067 8411
+          <span>Professional Summary</span>
         </a>
-        <a class="flex items-center gap-1.5 text-accent hover:underline" href="mailto:vishwaaloka16@gmail.com">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <a class="toc-link" href="#experience">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="3" y="7" width="18" height="13" rx="2"></rect>
+            <path
+              d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"
+            ></path>
+          </svg>
+          <span>Experience</span>
+        </a>
+        <a class="toc-link" href="#projects">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="M3 6h7l2 2h9v11H3z"></path>
+            <path d="m9 12-2 2 2 2M15 12l2 2-2 2"></path>
+          </svg>
+          <span>Personal Projects</span>
+        </a>
+        <a class="toc-link" href="#articles">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22z"
+            ></path>
+          </svg>
+          <span>Articles &amp; Publications</span>
+        </a>
+        <a class="toc-link" href="#skills">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+            <path
+              d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3M10 10h4v4h-4z"
+            ></path>
+          </svg>
+          <span>Technical Skills</span>
+        </a>
+        <a class="toc-link" href="#education">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path
+              d="m2 9 10-5 10 5-10 5zM6 11.5V17c3.5 2.5 8.5 2.5 12 0v-5.5M22 9v7"
+            ></path>
+          </svg>
+          <span>Professional Education</span>
+        </a>
+        <a class="toc-link" href="#awards">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v2a4 4 0 0 0 4 4M16 6h4v2a4 4 0 0 1-4 4M12 13v4M8 21h8M9 17h6v4H9z"
+            ></path>
+          </svg>
+          <span>Awards &amp; Honors</span>
+        </a>
+        <a class="toc-link" href="#certifications">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="9" r="6"></circle>
+            <path d="m9 14-1 8 4-2 4 2-1-8M9.5 9l1.5 1.5L14.5 7"></path>
+          </svg>
+          <span>Certifications &amp; Courses</span>
+        </a>
+        <a class="toc-link" href="#additional">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 11v6M12 7h.01"></path>
+          </svg>
+          <span>Additional Information</span>
+        </a>
+        <a class="toc-link" href="#contact">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
             <rect x="3" y="5" width="18" height="14" rx="2"></rect>
             <path d="m3 7 9 6 9-6"></path>
           </svg>
-          vishwaaloka16@gmail.com
+          <span>Contact</span>
         </a>
-        <a class="flex items-center gap-1.5 text-accent hover:underline" href="https://vishwa-aloka-16.github.io">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path>
-          </svg>
-          vishwa-aloka-16.github.io
-        </a>
+      </nav>
+    </aside>
+
+    <aside class="contact-rail no-print" aria-label="Contact details">
+      <div class="contact-heading mb-3 flex items-center gap-2">
+        <h2 class="text-xs font-bold uppercase tracking-[.16em] text-ink">
+          Contact
+        </h2>
+        <span class="h-px flex-1 bg-line"></span>
       </div>
-      <div class="mt-4 flex flex-wrap justify-center gap-5 text-sm font-semibold">
-        <a class="flex items-center gap-1.5 hover:text-accent" href="https://github.com/vishwa-aloka-16" target="_blank" rel="noreferrer">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path>
+      <nav aria-label="Contact links">
+        <a class="contact-rail-link" href="tel:+94760678411">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path
+              d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"
+            ></path>
           </svg>
-          GitHub
+          <span>+94 76 067 8411</span>
         </a>
-        <a class="flex items-center gap-1.5 hover:text-accent" href="https://www.linkedin.com/in/vishwaaloka" target="_blank" rel="noreferrer">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M5.34 3.5A2.34 2.34 0 1 1 5.33 8.2a2.34 2.34 0 0 1 0-4.68ZM3.32 9.72h4.03V21H3.32V9.72Zm6.54 0h3.87v1.54h.05c.54-1.02 1.86-2.1 3.83-2.1 4.1 0 4.86 2.7 4.86 6.21V21h-4.03v-4.99c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4.03V9.72Z"></path>
+        <a class="contact-rail-link" href="mailto:vishwaaloka16@gmail.com">
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
           </svg>
-          LinkedIn
+          <span>Email</span>
         </a>
-        <a class="flex items-center gap-1.5 hover:text-accent" href="https://medium.com/@VishwaAlokaX" target="_blank" rel="noreferrer">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M2 5.5a.65.65 0 0 0-.22-.55L.22 3.07V2.8h6.1l4.72 10.35L15.2 2.8H21v.27l-1.33 1.28a.39.39 0 0 0-.15.37v14.56a.39.39 0 0 0 .15.37l1.3 1.28v.27h-6.56v-.27l1.35-1.31c.13-.13.13-.17.13-.37V7.47L12.14 21.2h-.5L7.27 7.47v9.9a.88.88 0 0 0 .24.73l1.75 2.13v.27H4.3v-.27l1.75-2.13a.85.85 0 0 0 .22-.73V5.5Z"></path>
+        <a
+          class="contact-rail-link"
+          href="https://github.com/vishwa-aloka-16"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+            ></path>
           </svg>
-          Medium
+          <span>GitHub</span>
         </a>
-      </div>
-    </header>
-
-    <section class="reveal mb-11" id="summary">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Professional Summary</h2>
-      <div class="section-rule"></div>
-      <p class="text-[15px] leading-7 text-muted">
-        <a class="wiki-term" href="#education" aria-label="View Data Science education qualifications">
-          Data Science student
-          <span class="wiki-preview" aria-hidden="true">
-            <span class="wiki-preview-title">
-              <svg class="wiki-preview-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="m2 9 10-5 10 5-10 5zM6 11.5V17c3.5 2.5 8.5 2.5 12 0v-5.5M22 9v7"></path>
-              </svg>
-              Education Qualifications
-            </span>
-            B.Sc. (Hons) in Data Science at SLIIT, with additional study in Physical Sciences and an Advanced Level background in the physical science stream.
-            <span class="wiki-preview-action">View education →</span>
-          </span>
+        <a
+          class="contact-rail-link"
+          href="https://www.linkedin.com/in/vishwaaloka"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M5.34 3.5A2.34 2.34 0 1 1 5.33 8.2a2.34 2.34 0 0 1 0-4.68ZM3.32 9.72h4.03V21H3.32V9.72Zm6.54 0h3.87v1.54h.05c.54-1.02 1.86-2.1 3.83-2.1 4.1 0 4.86 2.7 4.86 6.21V21h-4.03v-4.99c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4.03V9.72Z"
+            ></path>
+          </svg>
+          <span>LinkedIn</span>
         </a>
-        with
-        <a class="wiki-term preview-center" href="#experience" aria-label="View data warehousing and analytics experience">
-          experience in data warehousing and analytics
-          <span class="wiki-preview" aria-hidden="true">
-            <span class="wiki-preview-title">
-              <svg class="wiki-preview-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <rect x="3" y="7" width="18" height="13" rx="2"></rect>
-                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"></path>
-              </svg>
-              Professional Experience
-            </span>
-            Six-month Enterprise Data Warehousing and Data Analytics internship at National Development Bank, covering automation, data pipelines, metadata, and Power BI.
-            <span class="wiki-preview-action">View experience →</span>
-          </span>
-        </a>,
-        seeking challenging opportunities in data science.
-        <a class="wiki-term" href="#skills" aria-label="View data engineering, AI ML engineering, and data science skills">
-          Skilled in data engineering, AI/ML engineering, and data science
-          <span class="wiki-preview" aria-hidden="true">
-            <span class="wiki-preview-title">
-              <svg class="wiki-preview-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <rect x="7" y="7" width="10" height="10" rx="2"></rect>
-                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3M10 10h4v4h-4z"></path>
-              </svg>
-              Technical Skills
-            </span>
-            Python, Airflow, BigQuery, Snowflake, Scikit-learn, LangChain, GraphRAG, databases, business intelligence, and full-stack web technologies.
-            <span class="wiki-preview-action">View technical skills →</span>
-          </span>
-        </a>,
-        with a strong interest in contributing to
-        <a class="wiki-term preview-center" href="#projects" aria-label="View innovative personal projects">
-          innovative projects
-          <span class="wiki-preview" aria-hidden="true">
-            <span class="wiki-preview-title">
-              <svg class="wiki-preview-title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                <path d="M3 6h7l2 2h9v11H3z"></path>
-                <path d="m9 12-2 2 2 2M15 12l2 2-2 2"></path>
-              </svg>
-              Personal Projects
-            </span>
-            Applied AI, machine learning, and data engineering projects including the Ross legal workspace, BrandPulse social ETL framework, and FlyCast prediction API.
-            <span class="wiki-preview-action">View projects →</span>
-          </span>
+        <a
+          class="contact-rail-link"
+          href="https://medium.com/@vishwaaloka16"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 5.5a.65.65 0 0 0-.22-.55L.22 3.07V2.8h6.1l4.72 10.35L15.2 2.8H21v.27l-1.33 1.28a.39.39 0 0 0-.15.37v14.56a.39.39 0 0 0 .15.37l1.3 1.28v.27h-6.56v-.27l1.35-1.31c.13-.13.13-.17.13-.37V7.47L12.14 21.2h-.5L7.27 7.47v9.9a.88.88 0 0 0 .24.73l1.75 2.13v.27H4.3v-.27l1.75-2.13a.85.85 0 0 0 .22-.73V5.5Z"
+            ></path>
+          </svg>
+          <span>Medium</span>
         </a>
-        while developing expertise in decision-making and problem-solving.
-      </p>
-    </section>
+        <a
+          class="contact-rail-link"
+          href="https://x.com/VishwaAlokaX"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="m5 4 14 16M19 4 5 20"></path>
+          </svg>
+          <span>X / Twitter</span>
+        </a>
+        <a
+          class="contact-rail-link"
+          href="https://instagram.com/vishwaaloka_ "
+          target="_blank"
+          rel="noreferrer"
+        >
+          <svg
+            class="toc-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle
+              cx="17.5"
+              cy="6.5"
+              r=".8"
+              fill="currentColor"
+              stroke="none"
+            ></circle>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </nav>
+    </aside>
 
-    <section class="reveal mb-11" id="experience">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Experience</h2>
-      <div class="section-rule"></div>
-      <article>
-        <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-          <h3 class="font-semibold">Enterprise Data Warehousing &amp; Data Analytics Intern</h3>
-          <span class="shrink-0 text-sm text-muted">Sep 2025 – Mar 2026</span>
-        </div>
-        <div class="mt-1 flex flex-col justify-between gap-1 text-sm sm:flex-row">
-          <p class="font-medium text-accent">National Development Bank (NDB)</p>
-          <p class="text-muted">Colombo 02, Sri Lanka</p>
-        </div>
-        <ul class="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink">
-          <li>Automated reconciliation between two internal system databases with Python, Pandas, and NumPy, significantly reducing processing time and improving operational efficiency.</li>
-          <li>Partnered with external BCG consultants on a machine-learning infrastructure project, building the transformation pipeline that converts raw data into model-ready features.</li>
-          <li>Created more than five Power BI dashboards to track savings strategies, customer demographics, branch performance, and cross-selling opportunities.</li>
-          <li>Developed an automated data-dictionary generator that creates a metadata catalog for any database, helping analysts locate and understand available data quickly.</li>
-        </ul>
-      </article>
-    </section>
+    <button
+      class="mobile-contact-fab no-print"
+      id="contact-menu-toggle"
+      type="button"
+      aria-controls="contact-menu"
+      aria-expanded="false"
+      aria-label="Open contact menu"
+    >
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        aria-hidden="true"
+      >
+        <path
+          d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"
+        ></path>
+        <path d="M8 9h8M8 13h5"></path>
+      </svg>
+    </button>
 
-    <section class="reveal mb-11" id="projects">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Selected Projects</h2>
-      <div class="section-rule"></div>
-      <div class="space-y-8">
-        <article class="border-l-2 border-accent pl-5">
-          <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-            <h3 class="font-semibold">Ross: Legal Workspace with Dynamic RAG Systems</h3>
-            <span class="shrink-0 text-sm text-muted">GraphRAG · RAPTOR</span>
-          </div>
-          <p class="mt-2 text-sm font-medium text-accent">Gemini · Scikit-learn (GMM) · Node.js · FastAPI · MongoDB · Supabase</p>
-          <ul class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink">
-            <li>Built a legal intelligence workspace that helps professionals analyze long, complex legal documents through a RAG pipeline and grounded conversational retrieval.</li>
-            <li>Optimized orchestration across multiple LLMs for embeddings, summarization, and conversion, keeping document-ingestion cost below $0.05 per 10 MB.</li>
-            <li>Used classification models including GMM to format unstructured files into document-aware text windows, then published the technical findings as a Medium article.</li>
-          </ul>
-          <button class="project-toggle" type="button" data-project-toggle aria-expanded="false" aria-controls="ross-details">
-            <span class="project-toggle-icons" aria-hidden="true">
-              <span class="project-toggle-icon">
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path>
-                </svg>
-              </span>
-              <span class="project-toggle-icon">
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 17 17 7M8 7h9v9"></path>
-                </svg>
-              </span>
-            </span>
-            <span data-toggle-label>More</span>
-          </button>
-          <div class="mt-5 hidden border-t border-line pt-5" id="ross-details" data-project-details>
-            <div class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]">
-              <img class="aspect-video h-full w-full rounded border border-line object-cover object-top" src="imgs/Project-Ross.png" alt="Ross legal intelligence application interface" loading="lazy">
-              <div class="flex flex-col rounded border border-line p-5">
-                <h4 class="font-serif text-xl font-bold">Ross Legal Workspace</h4>
-                <p class="mt-2 text-sm leading-6 text-muted">Explore the source code or open the deployed legal intelligence workspace.</p>
-                <div class="mt-5 flex flex-col gap-3">
-                  <a class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent" href="https://github.com/vishwa-aloka-16/ross-webapp" target="_blank" rel="noreferrer">
-                    GitHub Repository
-                  </a>
-                  <a class="inline-flex items-center justify-center rounded-full border border-ink px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent" href="https://ross-ai.netlify.app/" target="_blank" rel="noreferrer">
-                    Live Demo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="border-l-2 border-line pl-5 transition hover:border-accent">
-          <h3 class="font-semibold">Automated Multi-Source Social ETL Framework</h3>
-          <p class="mt-2 text-sm font-medium text-accent">Python · Apache Airflow · Supabase · JSON · Power BI</p>
-          <ul class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink">
-            <li>Designed an automated ETL pipeline that monitors and ingests brand mentions and public sentiment across Reddit and X.</li>
-            <li>Created a modular Airflow extraction engine for rapidly switching target-brand keywords and presenting results in Power BI.</li>
-            <li>Transformed unstructured commentary into structured business intelligence through text processing and sentiment scoring.</li>
-          </ul>
-          <button class="project-toggle" type="button" data-project-toggle aria-expanded="false" aria-controls="brandpulse-details">
-            <span class="project-toggle-icons" aria-hidden="true">
-              <span class="project-toggle-icon">
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path>
-                </svg>
-              </span>
-              <span class="project-toggle-icon">
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 17 17 7M8 7h9v9"></path>
-                </svg>
-              </span>
-            </span>
-            <span data-toggle-label>More</span>
-          </button>
-          <div class="mt-5 hidden border-t border-line pt-5" id="brandpulse-details" data-project-details>
-            <div class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]">
-              <img class="aspect-video h-full w-full rounded border border-line object-cover" src="imgs/Project-BrandPulse.svg" alt="BrandPulse social sentiment ETL pipeline diagram" loading="lazy">
-              <div class="flex flex-col rounded border border-line  p-5">
-                <h4 class="font-serif text-xl font-bold">BrandPulse</h4>
-                <p class="mt-2 text-sm leading-6 text-muted">Review the multi-source sentiment ETL framework and its implementation.</p>
-                <div class="mt-5 flex flex-col gap-3">
-                  <a class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent" href="https://github.com/vishwa-aloka-16/BrandPulse" target="_blank" rel="noreferrer">
-                    GitHub Repository
-                  </a>
-                  <span class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-line px-4 py-2.5 text-sm font-semibold text-muted" aria-label="A public live demo has not been published">
-                    Demo Not Published
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="border-l-2 border-line pl-5 transition hover:border-accent">
-          <h3 class="font-semibold">FlyCast: Flight Delay Prediction Open-Source Web API</h3>
-          <p class="mt-2 text-sm font-medium text-accent">Python · Pandas · Scikit-learn · XGBoost · Flask · Tailwind CSS · JavaScript</p>
-          <ul class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink">
-            <li>Designed a web API that predicts flight delays and cancellations using classification models trained on US domestic-flight data.</li>
-            <li>Created documented API endpoints and a responsive interface where users can check upcoming flights and view predicted outcomes.</li>
-          </ul>
-          <button class="project-toggle" type="button" data-project-toggle aria-expanded="false" aria-controls="flycast-details">
-            <span class="project-toggle-icons" aria-hidden="true">
-              <span class="project-toggle-icon">
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path>
-                </svg>
-              </span>
-              <span class="project-toggle-icon">
-                <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M7 17 17 7M8 7h9v9"></path>
-                </svg>
-              </span>
-            </span>
-            <span data-toggle-label>More</span>
-          </button>
-          <div class="mt-5 hidden border-t border-line pt-5" id="flycast-details" data-project-details>
-            <div class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]">
-              <img class="aspect-video h-full w-full rounded border border-line object-cover object-top" src="imgs/Project-FlyCast.png" alt="FlyCast flight-delay prediction application interface" loading="lazy">
-              <div class="flex flex-col rounded border border-line p-5">
-                <h4 class="font-serif text-xl font-bold">FlyCast</h4>
-                <p class="mt-2 text-sm leading-6 text-muted">Browse the prediction API source code or view the published product demonstration.</p>
-                <div class="mt-5 flex flex-col gap-3">
-                  <a class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent" href="https://github.com/vishwa-aloka-16/FlyCast" target="_blank" rel="noreferrer">
-                    GitHub Repository
-                  </a>
-                  <a class="inline-flex items-center justify-center rounded-full border border-ink px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent" href="https://www.linkedin.com/posts/vishwaaloka_machinelearning-webdevelopment-predictiveanalytics-activity-7363131836576796674-qRgh" target="_blank" rel="noreferrer">
-                    View Demo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="reveal mb-11" id="articles">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Articles &amp; Publications</h2>
-      <div class="section-rule"></div>
-      <article class="border-l-2 border-accent pl-5">
-        <h3 class="font-semibold">
-          <a class="transition hover:text-accent" href="https://medium.com/@vishwaaloka16/optimizing-chunking-strategies-for-raptor-tree-construction-a9fbbaf19b37" target="_blank" rel="noreferrer">
-            Optimizing Chunking Strategies for RAPTOR Tree Construction
-          </a>
-        </h3>
-        <p class="mt-2 text-sm font-medium text-accent">
-          <a class="hover:underline" href="https://medium.com/@vishwaaloka16" target="_blank" rel="noreferrer">Vishwa Aloka Bandara</a>
-          <span aria-hidden="true"> · </span>
-          <time datetime="2026-06-02">June 2, 2026</time>
-          <span aria-hidden="true"> · </span>
-          6 min read
-        </p>
-        <ul class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink">
-          <li>Explores RAPTOR as an advanced framework for large-scale text summarization and high-fidelity information retrieval through text chunking, statistical clustering, and hierarchical summarization.</li>
-          <li>Examines how the initial chunking strategy controls semantic segmentation and determines how information is mapped throughout the RAPTOR tree hierarchy.</li>
-          <li>Highlights how uneven information distribution can dilute semantic signals, disrupt cluster formation, and degrade downstream abstractive summaries.</li>
-          <li>Proposes three specialized pipelines for adversarial, hierarchical, and transactional documents to improve information retention while reducing summarization complexity.</li>
-        </ul>
-        <button class="project-toggle" type="button" data-project-toggle aria-expanded="false" aria-controls="raptor-article-details">
-          <span class="project-toggle-icons" aria-hidden="true">
-            <span class="project-toggle-icon">
-              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M2 5.5a.65.65 0 0 0-.22-.55L.22 3.07V2.8h6.1l4.72 10.35L15.2 2.8H21v.27l-1.33 1.28a.39.39 0 0 0-.15.37v14.56a.39.39 0 0 0 .15.37l1.3 1.28v.27h-6.56v-.27l1.35-1.31c.13-.13.13-.17.13-.37V7.47L12.14 21.2h-.5L7.27 7.47v9.9a.88.88 0 0 0 .24.73l1.75 2.13v.27H4.3v-.27l1.75-2.13a.85.85 0 0 0 .22-.73V5.5Z"></path>
-              </svg>
-            </span>
-            <span class="project-toggle-icon">
-              <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg>
-            </span>
-          </span>
-          <span data-toggle-label>More</span>
+    <div
+      class="contact-menu-overlay no-print"
+      id="contact-menu"
+      aria-hidden="true"
+    >
+      <div class="fullscreen-menu-header">
+        <span class="font-serif text-lg font-bold tracking-wide">CONTACT</span>
+        <button
+          class="fullscreen-close"
+          id="contact-menu-close"
+          type="button"
+          aria-label="Close contact menu"
+        >
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <path d="m6 6 12 12M18 6 6 18"></path>
+          </svg>
         </button>
-        <div class="mt-5 hidden border-t border-line pt-5" id="raptor-article-details" data-project-details>
-          <div class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]">
-            <img class="aspect-video h-full w-full rounded border border-line object-cover object-center" src="imgs/Artical-1.png" alt="Diagram of the three RAPTOR document-processing pipelines" loading="lazy">
-            <div class="flex flex-col rounded border border-line p-5">
-              <h4 class="font-serif text-xl font-bold">RAPTOR Chunking Strategies</h4>
-              <p class="mt-2 text-sm leading-6 text-muted">Read the complete technical article or visit the author’s Medium profile.</p>
-              <div class="mt-5 flex flex-col gap-3">
-                <a class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent" href="https://medium.com/@vishwaaloka16/optimizing-chunking-strategies-for-raptor-tree-construction-a9fbbaf19b37" target="_blank" rel="noreferrer">
-                  Read on Medium
-                </a>
-                <a class="inline-flex items-center justify-center rounded-full border border-ink px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent" href="https://medium.com/@vishwaaloka16" target="_blank" rel="noreferrer">
-                  Author Profile
-                </a>
+      </div>
+      <div class="fullscreen-menu-body">
+        <div class="mx-auto max-w-lg">
+          <div class="mb-5">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-accent">
+              Let’s connect
+            </p>
+            <h2 class="mt-2 font-serif text-3xl font-bold">
+              Choose how to reach me
+            </h2>
+          </div>
+          <nav
+            class="flex flex-col"
+            id="mobile-contact-links"
+            aria-label="Mobile contact links"
+          ></nav>
+          <a
+            class="mt-6 flex items-center justify-center rounded-full bg-ink px-4 py-3 text-sm font-semibold text-white transition hover:bg-accent"
+            href="#contact"
+            id="contact-form-link"
+            >Open Contact Form</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <main
+      class="mx-auto min-h-screen max-w-5xl bg-paper px-5 pb-20 pt-28 shadow-sm sm:px-10 lg:px-14"
+      id="top"
+    >
+      <header class="mb-12 border-b border-line pb-10 text-center">
+        <h1 class="name-font text-4xl font-bold tracking-tight sm:text-5xl">
+          Vishwa Bandara
+        </h1>
+        <div
+          class="mt-7 flex flex-wrap justify-center gap-x-5 gap-y-3 text-sm text-muted"
+        >
+          <span class="flex items-center gap-1.5">
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+              <circle cx="12" cy="10" r="2.5"></circle>
+            </svg>
+            Colombo, Sri Lanka
+          </span>
+          <a
+            class="flex items-center gap-1.5 text-accent hover:underline"
+            href="tel:+94760678411"
+          >
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"
+              ></path>
+            </svg>
+            +94 76 067 8411
+          </a>
+          <a
+            class="flex items-center gap-1.5 text-accent hover:underline"
+            href="mailto:vishwaaloka16@gmail.com"
+          >
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="m3 7 9 6 9-6"></path>
+            </svg>
+            vishwaaloka16@gmail.com
+          </a>
+          <a
+            class="flex items-center gap-1.5 text-accent hover:underline"
+            href="https://vishwa-aloka-16.github.io"
+          >
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9"></circle>
+              <path
+                d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"
+              ></path>
+            </svg>
+            vishwa-aloka-16.github.io
+          </a>
+        </div>
+        <div
+          class="mt-4 flex flex-wrap justify-center gap-5 text-sm font-semibold"
+        >
+          <a
+            class="flex items-center gap-1.5 hover:text-accent"
+            href="https://github.com/vishwa-aloka-16"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+              ></path>
+            </svg>
+            GitHub
+          </a>
+          <a
+            class="flex items-center gap-1.5 hover:text-accent"
+            href="https://www.linkedin.com/in/vishwaaloka"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M5.34 3.5A2.34 2.34 0 1 1 5.33 8.2a2.34 2.34 0 0 1 0-4.68ZM3.32 9.72h4.03V21H3.32V9.72Zm6.54 0h3.87v1.54h.05c.54-1.02 1.86-2.1 3.83-2.1 4.1 0 4.86 2.7 4.86 6.21V21h-4.03v-4.99c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V21h-4.03V9.72Z"
+              ></path>
+            </svg>
+            LinkedIn
+          </a>
+          <a
+            class="flex items-center gap-1.5 hover:text-accent"
+            href="https://medium.com/@VishwaAlokaX"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              class="contact-icon"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 5.5a.65.65 0 0 0-.22-.55L.22 3.07V2.8h6.1l4.72 10.35L15.2 2.8H21v.27l-1.33 1.28a.39.39 0 0 0-.15.37v14.56a.39.39 0 0 0 .15.37l1.3 1.28v.27h-6.56v-.27l1.35-1.31c.13-.13.13-.17.13-.37V7.47L12.14 21.2h-.5L7.27 7.47v9.9a.88.88 0 0 0 .24.73l1.75 2.13v.27H4.3v-.27l1.75-2.13a.85.85 0 0 0 .22-.73V5.5Z"
+              ></path>
+            </svg>
+            Medium
+          </a>
+        </div>
+      </header>
+
+      <section class="reveal mb-11" id="summary">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Professional Summary
+        </h2>
+        <div class="section-rule"></div>
+        <p class="text-[15px] leading-7 text-muted">
+          <a
+            class="wiki-term"
+            href="#education"
+            aria-label="View Data Science education qualifications"
+          >
+            Data Science student
+            <span class="wiki-preview" aria-hidden="true">
+              <span class="wiki-preview-title">
+                <svg
+                  class="wiki-preview-title-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    d="m2 9 10-5 10 5-10 5zM6 11.5V17c3.5 2.5 8.5 2.5 12 0v-5.5M22 9v7"
+                  ></path>
+                </svg>
+                Education Qualifications
+              </span>
+              B.Sc. (Hons) in Data Science at SLIIT, with additional study in
+              Physical Sciences and an Advanced Level background in the physical
+              science stream.
+              <span class="wiki-preview-action">View education →</span>
+            </span>
+          </a>
+          with
+          <a
+            class="wiki-term preview-center"
+            href="#experience"
+            aria-label="View data warehousing and analytics experience"
+          >
+            experience in data warehousing and analytics
+            <span class="wiki-preview" aria-hidden="true">
+              <span class="wiki-preview-title">
+                <svg
+                  class="wiki-preview-title-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <rect x="3" y="7" width="18" height="13" rx="2"></rect>
+                  <path
+                    d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"
+                  ></path>
+                </svg>
+                Professional Experience
+              </span>
+              Six-month Enterprise Data Warehousing and Data Analytics
+              internship at National Development Bank, covering automation, data
+              pipelines, metadata, and Power BI.
+              <span class="wiki-preview-action">View experience →</span>
+            </span> </a
+          >, seeking challenging opportunities in data science.
+          <a
+            class="wiki-term"
+            href="#skills"
+            aria-label="View data engineering, AI ML engineering, and data science skills"
+          >
+            Skilled in data engineering, AI/ML engineering, and data science
+            <span class="wiki-preview" aria-hidden="true">
+              <span class="wiki-preview-title">
+                <svg
+                  class="wiki-preview-title-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <rect x="7" y="7" width="10" height="10" rx="2"></rect>
+                  <path
+                    d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3M10 10h4v4h-4z"
+                  ></path>
+                </svg>
+                Technical Skills
+              </span>
+              Python, Airflow, BigQuery, Snowflake, Scikit-learn, LangChain,
+              GraphRAG, databases, business intelligence, and full-stack web
+              technologies.
+              <span class="wiki-preview-action">View technical skills →</span>
+            </span> </a
+          >, with a strong interest in contributing to
+          <a
+            class="wiki-term preview-center"
+            href="#projects"
+            aria-label="View innovative personal projects"
+          >
+            innovative projects
+            <span class="wiki-preview" aria-hidden="true">
+              <span class="wiki-preview-title">
+                <svg
+                  class="wiki-preview-title-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="M3 6h7l2 2h9v11H3z"></path>
+                  <path d="m9 12-2 2 2 2M15 12l2 2-2 2"></path>
+                </svg>
+                Personal Projects
+              </span>
+              Applied AI, machine learning, and data engineering projects
+              including the Ross legal workspace, BrandPulse social ETL
+              framework, and FlyCast prediction API.
+              <span class="wiki-preview-action">View projects →</span>
+            </span>
+          </a>
+          while developing expertise in decision-making and problem-solving.
+        </p>
+      </section>
+
+      <section class="reveal mb-11" id="experience">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Experience
+        </h2>
+        <div class="section-rule"></div>
+        <article>
+          <div
+            class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+          >
+            <h3 class="font-semibold">
+              Enterprise Data Warehousing &amp; Data Analytics Intern
+            </h3>
+            <span class="shrink-0 text-sm text-muted">Sep 2025 – Mar 2026</span>
+          </div>
+          <div
+            class="mt-1 flex flex-col justify-between gap-1 text-sm sm:flex-row"
+          >
+            <p class="font-medium text-accent">
+              National Development Bank (NDB)
+            </p>
+            <p class="text-muted">Colombo 02, Sri Lanka</p>
+          </div>
+          <ul
+            class="mt-4 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink"
+          >
+            <li>
+              Automated reconciliation between two internal system databases
+              with Python, Pandas, and NumPy, significantly reducing processing
+              time and improving operational efficiency.
+            </li>
+            <li>
+              Partnered with external BCG consultants on a machine-learning
+              infrastructure project, building the transformation pipeline that
+              converts raw data into model-ready features.
+            </li>
+            <li>
+              Created more than five Power BI dashboards to track savings
+              strategies, customer demographics, branch performance, and
+              cross-selling opportunities.
+            </li>
+            <li>
+              Developed an automated data-dictionary generator that creates a
+              metadata catalog for any database, helping analysts locate and
+              understand available data quickly.
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="reveal mb-11" id="projects">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Selected Projects
+        </h2>
+        <div class="section-rule"></div>
+        <div class="space-y-8">
+          <article class="border-l-2 border-accent pl-5">
+            <div
+              class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+            >
+              <h3 class="font-semibold">
+                Ross: Legal Workspace with Dynamic RAG Systems
+              </h3>
+              <span class="shrink-0 text-sm text-muted">GraphRAG · RAPTOR</span>
+            </div>
+            <p class="mt-2 text-sm font-medium text-accent">
+              Gemini · Scikit-learn (GMM) · Node.js · FastAPI · MongoDB ·
+              Supabase
+            </p>
+            <ul
+              class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink"
+            >
+              <li>
+                Built a legal intelligence workspace that helps professionals
+                analyze long, complex legal documents through a RAG pipeline and
+                grounded conversational retrieval.
+              </li>
+              <li>
+                Optimized orchestration across multiple LLMs for embeddings,
+                summarization, and conversion, keeping document-ingestion cost
+                below $0.05 per 10 MB.
+              </li>
+              <li>
+                Used classification models including GMM to format unstructured
+                files into document-aware text windows, then published the
+                technical findings as a Medium article.
+              </li>
+            </ul>
+            <button
+              class="project-toggle"
+              type="button"
+              data-project-toggle
+              aria-expanded="false"
+              aria-controls="ross-details"
+            >
+              <span class="project-toggle-icons" aria-hidden="true">
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9"></path>
+                  </svg>
+                </span>
+              </span>
+              <span data-toggle-label>More</span>
+            </button>
+            <div
+              class="mt-5 hidden border-t border-line pt-5"
+              id="ross-details"
+              data-project-details
+            >
+              <div
+                class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]"
+              >
+                <img
+                  class="aspect-video h-full w-full rounded border border-line object-cover object-top"
+                  src="imgs/Project-Ross.png"
+                  alt="Ross legal intelligence application interface"
+                  loading="lazy"
+                />
+                <div class="flex flex-col rounded border border-line p-5">
+                  <h4 class="font-serif text-xl font-bold">
+                    Ross Legal Workspace
+                  </h4>
+                  <p class="mt-2 text-sm leading-6 text-muted">
+                    Explore the source code or open the deployed legal
+                    intelligence workspace.
+                  </p>
+                  <div class="mt-5 flex flex-col gap-3">
+                    <a
+                      class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent"
+                      href="https://github.com/vishwa-aloka-16/ross-webapp"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GitHub Repository
+                    </a>
+                    <a
+                      class="inline-flex items-center justify-center rounded-full border border-ink px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent"
+                      href="https://ross-ai.netlify.app/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Live Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="border-l-2 border-line pl-5 transition hover:border-accent"
+          >
+            <h3 class="font-semibold">
+              ClickStream: End-to-End Commerce Analytics Pipeline
+            </h3>
+            <p class="mt-2 text-sm font-medium text-accent">
+              React 19 · Express · PostgreSQL · Apache Kafka · Python · pandas ·
+              Parquet · Power BI · Docker
+            </p>
+            <ul
+              class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink"
+            >
+              <li>
+                Built a demo e-commerce platform that captures browser and
+                synthetic customer interactions, validates them through an
+                Express API, and publishes events to Kafka.
+              </li>
+              <li>
+                Implemented a Python Bronze–Silver–Gold pipeline that ingests
+                JSONL events, validates and deduplicates them into Parquet, and
+                aggregates funnel, abandonment, product, and revenue metrics.
+              </li>
+              <li>
+                Created Power BI dashboards for conversion KPIs, session sales
+                funnels, and individual and cross-product performance, with the
+                local infrastructure orchestrated through Docker Compose.
+              </li>
+            </ul>
+            <button
+              class="project-toggle"
+              type="button"
+              data-project-toggle
+              aria-expanded="false"
+              aria-controls="clickstream-details"
+            >
+              <span class="project-toggle-icons" aria-hidden="true">
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9"></path>
+                  </svg>
+                </span>
+              </span>
+              <span data-toggle-label>More</span>
+            </button>
+            <div
+              class="mt-5 hidden border-t border-line pt-5"
+              id="clickstream-details"
+              data-project-details
+            >
+              <div class="grid gap-5">
+                <div class="grid gap-4 sm:grid-cols-2">
+                  <figure class="sm:col-span-2">
+                    <img
+                      class="aspect-video w-full rounded border border-line object-contain"
+                      src="imgs/ClickStrem (3).png"
+                      alt="ClickStream summary dashboard showing user-session and product-performance metrics"
+                      loading="lazy"
+                    />
+                    <figcaption class="mt-2 text-xs text-muted">
+                      Summary session and product performance
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img
+                      class="aspect-video w-full rounded border border-line object-contain"
+                      src="imgs/ClickStrem (1).png"
+                      alt="ClickStream session sales performance dashboard with conversion gauges and a sales funnel"
+                      loading="lazy"
+                    />
+                    <figcaption class="mt-2 text-xs text-muted">
+                      Session sales performance and conversion funnel
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <img
+                      class="aspect-video w-full rounded border border-line object-contain"
+                      src="imgs/ClickStrem (2).png"
+                      alt="ClickStream individual and cross-product performance dashboard"
+                      loading="lazy"
+                    />
+                    <figcaption class="mt-2 text-xs text-muted">
+                      Individual and cross-product performance
+                    </figcaption>
+                  </figure>
+                </div>
+                <div
+                  class="flex flex-col gap-5 rounded border border-line p-5 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <h4 class="font-serif text-xl font-bold">
+                      ClickStream Commerce Analytics
+                    </h4>
+                    <p class="mt-2 text-sm leading-6 text-muted">
+                      Explore the storefront, streaming architecture, medallion
+                      data pipeline, and dashboard implementation.
+                    </p>
+                  </div>
+                  <a
+                    class="inline-flex shrink-0 items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent"
+                    href="https://github.com/vishwa-aloka-16/ClickStream"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub Repository
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="border-l-2 border-line pl-5 transition hover:border-accent"
+          >
+            <h3 class="font-semibold">
+              Automated Multi-Source Social ETL Framework
+            </h3>
+            <p class="mt-2 text-sm font-medium text-accent">
+              Python · Apache Airflow · Supabase · JSON · Power BI
+            </p>
+            <ul
+              class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink"
+            >
+              <li>
+                Designed an automated ETL pipeline that monitors and ingests
+                brand mentions and public sentiment across Reddit and X.
+              </li>
+              <li>
+                Created a modular Airflow extraction engine for rapidly
+                switching target-brand keywords and presenting results in Power
+                BI.
+              </li>
+              <li>
+                Transformed unstructured commentary into structured business
+                intelligence through text processing and sentiment scoring.
+              </li>
+            </ul>
+            <button
+              class="project-toggle"
+              type="button"
+              data-project-toggle
+              aria-expanded="false"
+              aria-controls="brandpulse-details"
+            >
+              <span class="project-toggle-icons" aria-hidden="true">
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9"></path>
+                  </svg>
+                </span>
+              </span>
+              <span data-toggle-label>More</span>
+            </button>
+            <div
+              class="mt-5 hidden border-t border-line pt-5"
+              id="brandpulse-details"
+              data-project-details
+            >
+              <div
+                class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]"
+              >
+                <img
+                  class="aspect-video h-full w-full rounded border border-line object-cover"
+                  src="imgs/Project-BrandPulse.svg"
+                  alt="BrandPulse social sentiment ETL pipeline diagram"
+                  loading="lazy"
+                />
+                <div class="flex flex-col rounded border border-line p-5">
+                  <h4 class="font-serif text-xl font-bold">BrandPulse</h4>
+                  <p class="mt-2 text-sm leading-6 text-muted">
+                    Review the multi-source sentiment ETL framework and its
+                    implementation.
+                  </p>
+                  <div class="mt-5 flex flex-col gap-3">
+                    <a
+                      class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent"
+                      href="https://github.com/vishwa-aloka-16/BrandPulse"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GitHub Repository
+                    </a>
+                    <span
+                      class="inline-flex cursor-not-allowed items-center justify-center rounded-full border border-line px-4 py-2.5 text-sm font-semibold text-muted"
+                      aria-label="A public live demo has not been published"
+                    >
+                      Demo Not Published
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="border-l-2 border-line pl-5 transition hover:border-accent"
+          >
+            <h3 class="font-semibold">
+              FlyCast: Flight Delay Prediction Open-Source Web API
+            </h3>
+            <p class="mt-2 text-sm font-medium text-accent">
+              Python · Pandas · Scikit-learn · XGBoost · Flask · Tailwind CSS ·
+              JavaScript
+            </p>
+            <ul
+              class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink"
+            >
+              <li>
+                Designed a web API that predicts flight delays and cancellations
+                using classification models trained on US domestic-flight data.
+              </li>
+              <li>
+                Created documented API endpoints and a responsive interface
+                where users can check upcoming flights and view predicted
+                outcomes.
+              </li>
+            </ul>
+            <button
+              class="project-toggle"
+              type="button"
+              data-project-toggle
+              aria-expanded="false"
+              aria-controls="flycast-details"
+            >
+              <span class="project-toggle-icons" aria-hidden="true">
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="project-toggle-icon">
+                  <svg
+                    class="h-3.5 w-3.5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17 17 7M8 7h9v9"></path>
+                  </svg>
+                </span>
+              </span>
+              <span data-toggle-label>More</span>
+            </button>
+            <div
+              class="mt-5 hidden border-t border-line pt-5"
+              id="flycast-details"
+              data-project-details
+            >
+              <div
+                class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]"
+              >
+                <img
+                  class="aspect-video h-full w-full rounded border border-line object-cover object-top"
+                  src="imgs/Project-FlyCast.png"
+                  alt="FlyCast flight-delay prediction application interface"
+                  loading="lazy"
+                />
+                <div class="flex flex-col rounded border border-line p-5">
+                  <h4 class="font-serif text-xl font-bold">FlyCast</h4>
+                  <p class="mt-2 text-sm leading-6 text-muted">
+                    Browse the prediction API source code or view the published
+                    product demonstration.
+                  </p>
+                  <div class="mt-5 flex flex-col gap-3">
+                    <a
+                      class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent"
+                      href="https://github.com/vishwa-aloka-16/FlyCast"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      GitHub Repository
+                    </a>
+                    <a
+                      class="inline-flex items-center justify-center rounded-full border border-ink px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent"
+                      href="https://www.linkedin.com/posts/vishwaaloka_machinelearning-webdevelopment-predictiveanalytics-activity-7363131836576796674-qRgh"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      View Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal mb-11" id="articles">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Articles &amp; Publications
+        </h2>
+        <div class="section-rule"></div>
+        <article class="border-l-2 border-accent pl-5">
+          <h3 class="font-semibold">
+            <a
+              class="transition hover:text-accent"
+              href="https://medium.com/@vishwaaloka16/optimizing-chunking-strategies-for-raptor-tree-construction-a9fbbaf19b37"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Optimizing Chunking Strategies for RAPTOR Tree Construction
+            </a>
+          </h3>
+          <p class="mt-2 text-sm font-medium text-accent">
+            <a
+              class="hover:underline"
+              href="https://medium.com/@vishwaaloka16"
+              target="_blank"
+              rel="noreferrer"
+              >Vishwa Aloka Bandara</a
+            >
+            <span aria-hidden="true"> · </span>
+            <time datetime="2026-06-02">June 2, 2026</time>
+            <span aria-hidden="true"> · </span>
+            6 min read
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-2 pl-5 text-[15px] leading-6 text-muted marker:text-ink"
+          >
+            <li>
+              Explores RAPTOR as an advanced framework for large-scale text
+              summarization and high-fidelity information retrieval through text
+              chunking, statistical clustering, and hierarchical summarization.
+            </li>
+            <li>
+              Examines how the initial chunking strategy controls semantic
+              segmentation and determines how information is mapped throughout
+              the RAPTOR tree hierarchy.
+            </li>
+            <li>
+              Highlights how uneven information distribution can dilute semantic
+              signals, disrupt cluster formation, and degrade downstream
+              abstractive summaries.
+            </li>
+            <li>
+              Proposes three specialized pipelines for adversarial,
+              hierarchical, and transactional documents to improve information
+              retention while reducing summarization complexity.
+            </li>
+          </ul>
+          <button
+            class="project-toggle"
+            type="button"
+            data-project-toggle
+            aria-expanded="false"
+            aria-controls="raptor-article-details"
+          >
+            <span class="project-toggle-icons" aria-hidden="true">
+              <span class="project-toggle-icon">
+                <svg
+                  class="h-3.5 w-3.5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M2 5.5a.65.65 0 0 0-.22-.55L.22 3.07V2.8h6.1l4.72 10.35L15.2 2.8H21v.27l-1.33 1.28a.39.39 0 0 0-.15.37v14.56a.39.39 0 0 0 .15.37l1.3 1.28v.27h-6.56v-.27l1.35-1.31c.13-.13.13-.17.13-.37V7.47L12.14 21.2h-.5L7.27 7.47v9.9a.88.88 0 0 0 .24.73l1.75 2.13v.27H4.3v-.27l1.75-2.13a.85.85 0 0 0 .22-.73V5.5Z"
+                  ></path>
+                </svg>
+              </span>
+              <span class="project-toggle-icon">
+                <svg
+                  class="h-3.5 w-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M7 17 17 7M8 7h9v9"></path>
+                </svg>
+              </span>
+            </span>
+            <span data-toggle-label>More</span>
+          </button>
+          <div
+            class="mt-5 hidden border-t border-line pt-5"
+            id="raptor-article-details"
+            data-project-details
+          >
+            <div
+              class="grid gap-5 md:grid-cols-[minmax(0,1.45fr)_minmax(220px,.75fr)]"
+            >
+              <img
+                class="aspect-video h-full w-full rounded border border-line object-cover object-center"
+                src="imgs/Artical-1.png"
+                alt="Diagram of the three RAPTOR document-processing pipelines"
+                loading="lazy"
+              />
+              <div class="flex flex-col rounded border border-line p-5">
+                <h4 class="font-serif text-xl font-bold">
+                  RAPTOR Chunking Strategies
+                </h4>
+                <p class="mt-2 text-sm leading-6 text-muted">
+                  Read the complete technical article or visit the author’s
+                  Medium profile.
+                </p>
+                <div class="mt-5 flex flex-col gap-3">
+                  <a
+                    class="inline-flex items-center justify-center rounded-full bg-ink px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-accent"
+                    href="https://medium.com/@vishwaaloka16/optimizing-chunking-strategies-for-raptor-tree-construction-a9fbbaf19b37"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Read on Medium
+                  </a>
+                  <a
+                    class="inline-flex items-center justify-center rounded-full border border-ink px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-accent hover:text-accent"
+                    href="https://medium.com/@vishwaaloka16"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Author Profile
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
-    </section>
-
-    <section class="reveal mb-11" id="skills">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Technical Skills</h2>
-      <div class="section-rule"></div>
-      <dl class="grid gap-x-8 gap-y-5 text-[15px] sm:grid-cols-2">
-        <div><dt class="font-semibold">Programming</dt><dd class="mt-1 leading-6 text-muted">Python, Java</dd></div>
-        <div><dt class="font-semibold">Data Engineering</dt><dd class="mt-1 leading-6 text-muted">Apache Airflow, BigQuery, Snowflake</dd></div>
-        <div><dt class="font-semibold">AI &amp; Machine Learning</dt><dd class="mt-1 leading-6 text-muted">Pandas, NumPy, Scikit-learn, LlamaIndex, LangChain, GraphRAG, RAPTOR</dd></div>
-        <div><dt class="font-semibold">Databases &amp; Vector Stores</dt><dd class="mt-1 leading-6 text-muted">MongoDB, MSSQL, MySQL, Supabase, Chroma, Pinecone</dd></div>
-        <div><dt class="font-semibold">Business Intelligence</dt><dd class="mt-1 leading-6 text-muted">Power BI, Tableau</dd></div>
-        <div><dt class="font-semibold">Web Technologies</dt><dd class="mt-1 leading-6 text-muted">Node.js, React, Express, JSP/Servlet, Spring Boot, Tailwind CSS, Flask, FastAPI</dd></div>
-      </dl>
-    </section>
-
-    <section class="reveal mb-11" id="education">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Education</h2>
-      <div class="section-rule"></div>
-      <div class="space-y-6">
-        <article>
-          <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-            <h3 class="font-semibold">B.Sc. (Hons) in Data Science</h3>
-            <span class="text-sm text-muted">Jun 2024 – Present</span>
-          </div>
-          <p class="mt-1 text-sm text-muted">Sri Lanka Institute of Information Technology (SLIIT) · Colombo</p>
         </article>
-        <article>
-          <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-            <h3 class="font-semibold">B.Sc. in Physical Sciences</h3>
-            <span class="text-sm text-muted">2025 – Deferred</span>
-          </div>
-          <p class="mt-1 text-sm text-muted">University of Sri Jayewardenepura · Colombo</p>
-        </article>
-        <article>
-          <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-            <h3 class="font-semibold">G.C.E. Advanced Level — Physical Sciences</h3>
-            <span class="text-sm text-muted">Jan 2021 – Dec 2023</span>
-          </div>
-          <p class="mt-1 text-sm text-muted">Kingswood College Kandy · Kandy</p>
-        </article>
-      </div>
-    </section>
+      </section>
 
-    <section class="reveal mb-11" id="awards">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Awards &amp; Honors</h2>
-      <div class="section-rule"></div>
-      <div class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
-        <h3 class="font-semibold">Dean’s List Award 2025</h3>
-        <span class="text-sm text-muted">Jan 2026</span>
-      </div>
-      <p class="mt-2 text-[15px] leading-6 text-muted">
-        Faculty of Computing Certificate of Excellence from SLIIT, awarded in recognition of academic excellence during 2025.
-      </p>
-    </section>
-
-    <section class="reveal mb-11" id="certifications">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Certifications &amp; Courses</h2>
-      <div class="section-rule"></div>
-      <div class="divide-y divide-line">
-        <div class="flex flex-col justify-between gap-1 py-3 first:pt-0 sm:flex-row"><p><span class="font-semibold">Intro to Snowflake for Devs, Data Scientists, Data Engineers</span> <span class="text-sm text-muted">· Snowflake</span></p><span class="text-sm text-muted">Ongoing</span></div>
-        <div class="flex flex-col justify-between gap-1 py-3 sm:flex-row"><p><span class="font-semibold">Build RAG Applications: Get Started</span> <span class="text-sm text-muted">· IBM</span></p><span class="text-sm text-muted">May 2026</span></div>
-        <div class="flex flex-col justify-between gap-1 py-3 sm:flex-row"><p><span class="font-semibold">Generative AI Applications: Get Started</span> <span class="text-sm text-muted">· IBM</span></p><span class="text-sm text-muted">Apr 2026</span></div>
-        <div class="flex flex-col justify-between gap-1 py-3 sm:flex-row"><p><span class="font-semibold">Introduction to Data Engineering</span> <span class="text-sm text-muted">· IBM</span></p><span class="text-sm text-muted">Dec 2025</span></div>
-        <div class="flex flex-col justify-between gap-1 py-3 last:pb-0 sm:flex-row"><p><span class="font-semibold">Introduction to Data Engineering on Google Cloud</span> <span class="text-sm text-muted">· Google Cloud</span></p><span class="text-sm text-muted">Jun 2026</span></div>
-      </div>
-    </section>
-
-    <section class="reveal mb-11" id="additional">
-      <h2 class="font-serif text-xl font-bold uppercase tracking-wider">Additional Information</h2>
-      <div class="section-rule"></div>
-      <p class="text-[15px] leading-7 text-muted">
-        <span class="font-semibold text-ink">Languages:</span> English (full professional proficiency) and Sinhala (native).
-      </p>
-      <p class="text-[15px] leading-7 text-muted">
-        <span class="font-semibold text-ink">References:</span> Available upon request.
-      </p>
-    </section>
-
-    <section class="reveal mt-11 rounded border border-line p-6 sm:p-8" id="contact">
-      <div class="max-w-2xl">
-        <p class="mb-2 text-xs font-semibold uppercase tracking-[.18em] text-accent">Get in touch</p>
-        <h2 class="font-serif text-2xl font-bold">Contact Me</h2>
-        <p class="mt-2 text-[15px] leading-7 text-muted">Have a project, opportunity, or question? Send a message and I’ll get back to you.</p>
-      </div>
-      <form class="mt-7 grid gap-5" id="contact-form" action="https://formcarry.com/s/q5YNXyDmIR1" method="POST" enctype="multipart/form-data">
-        <div class="grid gap-5 sm:grid-cols-2">
+      <section class="reveal mb-11" id="skills">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Technical Skills
+        </h2>
+        <div class="section-rule"></div>
+        <dl class="grid gap-x-8 gap-y-5 text-[15px] sm:grid-cols-2">
           <div>
-            <label class="mb-2 block text-sm font-semibold" for="contact-name">Name</label>
-            <input class="w-full rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent" id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
+            <dt class="font-semibold">Programming</dt>
+            <dd class="mt-1 leading-6 text-muted">Python, Java</dd>
           </div>
           <div>
-            <label class="mb-2 block text-sm font-semibold" for="contact-email">Email</label>
-            <input class="w-full rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent" id="contact-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <dt class="font-semibold">Data Engineering</dt>
+            <dd class="mt-1 leading-6 text-muted">
+              Apache Airflow, BigQuery, Snowflake
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold">AI &amp; Machine Learning</dt>
+            <dd class="mt-1 leading-6 text-muted">
+              Pandas, NumPy, Scikit-learn, LlamaIndex, LangChain, GraphRAG,
+              RAPTOR
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Databases &amp; Vector Stores</dt>
+            <dd class="mt-1 leading-6 text-muted">
+              MongoDB, MSSQL, MySQL, Supabase, Chroma, Pinecone
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Business Intelligence</dt>
+            <dd class="mt-1 leading-6 text-muted">Power BI, Tableau</dd>
+          </div>
+          <div>
+            <dt class="font-semibold">Web Technologies</dt>
+            <dd class="mt-1 leading-6 text-muted">
+              Node.js, React, Express, JSP/Servlet, Spring Boot, Tailwind CSS,
+              Flask, FastAPI
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="reveal mb-11" id="education">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Education
+        </h2>
+        <div class="section-rule"></div>
+        <div class="space-y-6">
+          <article>
+            <div
+              class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+            >
+              <h3 class="font-semibold">B.Sc. (Hons) in Data Science</h3>
+              <span class="text-sm text-muted">Jun 2024 – Present</span>
+            </div>
+            <p class="mt-1 text-sm text-muted">
+              Sri Lanka Institute of Information Technology (SLIIT) · Colombo
+            </p>
+          </article>
+          <article>
+            <div
+              class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+            >
+              <h3 class="font-semibold">B.Sc. in Physical Sciences</h3>
+              <span class="text-sm text-muted">2025 – Deferred</span>
+            </div>
+            <p class="mt-1 text-sm text-muted">
+              University of Sri Jayewardenepura · Colombo
+            </p>
+          </article>
+          <article>
+            <div
+              class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+            >
+              <h3 class="font-semibold">
+                G.C.E. Advanced Level — Physical Sciences
+              </h3>
+              <span class="text-sm text-muted">Jan 2021 – Dec 2023</span>
+            </div>
+            <p class="mt-1 text-sm text-muted">
+              Kingswood College Kandy · Kandy
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal mb-11" id="awards">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Awards &amp; Honors
+        </h2>
+        <div class="section-rule"></div>
+        <div
+          class="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline"
+        >
+          <h3 class="font-semibold">Dean’s List Award 2025</h3>
+          <span class="text-sm text-muted">Jan 2026</span>
+        </div>
+        <p class="mt-2 text-[15px] leading-6 text-muted">
+          Faculty of Computing Certificate of Excellence from SLIIT, awarded in
+          recognition of academic excellence during 2025.
+        </p>
+      </section>
+
+      <section class="reveal mb-11" id="certifications">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Certifications &amp; Courses
+        </h2>
+        <div class="section-rule"></div>
+        <div class="divide-y divide-line">
+          <div
+            class="flex flex-col justify-between gap-1 py-3 first:pt-0 sm:flex-row"
+          >
+            <p>
+              <span class="font-semibold"
+                >Intro to Snowflake for Devs, Data Scientists, Data
+                Engineers</span
+              >
+              <span class="text-sm text-muted">· Snowflake</span>
+            </p>
+            <span class="text-sm text-muted">Ongoing</span>
+          </div>
+          <div class="flex flex-col justify-between gap-1 py-3 sm:flex-row">
+            <p>
+              <span class="font-semibold"
+                >Build RAG Applications: Get Started</span
+              >
+              <span class="text-sm text-muted">· IBM</span>
+            </p>
+            <span class="text-sm text-muted">May 2026</span>
+          </div>
+          <div class="flex flex-col justify-between gap-1 py-3 sm:flex-row">
+            <p>
+              <span class="font-semibold"
+                >Generative AI Applications: Get Started</span
+              >
+              <span class="text-sm text-muted">· IBM</span>
+            </p>
+            <span class="text-sm text-muted">Apr 2026</span>
+          </div>
+          <div class="flex flex-col justify-between gap-1 py-3 sm:flex-row">
+            <p>
+              <span class="font-semibold"
+                >Introduction to Data Engineering</span
+              >
+              <span class="text-sm text-muted">· IBM</span>
+            </p>
+            <span class="text-sm text-muted">Dec 2025</span>
+          </div>
+          <div
+            class="flex flex-col justify-between gap-1 py-3 last:pb-0 sm:flex-row"
+          >
+            <p>
+              <span class="font-semibold"
+                >Introduction to Data Engineering on Google Cloud</span
+              >
+              <span class="text-sm text-muted">· Google Cloud</span>
+            </p>
+            <span class="text-sm text-muted">Jun 2026</span>
           </div>
         </div>
-        <div>
-          <label class="mb-2 block text-sm font-semibold" for="contact-subject">Subject</label>
-          <input class="w-full rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent" id="contact-subject" name="subject" type="text" placeholder="What would you like to discuss?" required>
-        </div>
-        <div>
-          <label class="mb-2 block text-sm font-semibold" for="contact-message">Message</label>
-          <textarea class="min-h-36 w-full resize-y rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent" id="contact-message" name="message" placeholder="Write your message here..." required></textarea>
-        </div>
-        <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-          <button class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-ink" type="submit">
-            Send Message
-          </button>
-          <p class="text-sm text-muted">Your message will be delivered through the contact form.</p>
-        </div>
-      </form>
-    </section>
-  </main>
+      </section>
 
-  <footer class="no-print border-t border-line bg-white py-8">
-    <div class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-5 text-sm text-muted sm:flex-row">
-      <p>© 2026 Vishwa Bandara</p>
-      <a class="font-semibold text-ink hover:text-accent" href="#contact">Let’s connect</a>
-    </div>
-  </footer>
+      <section class="reveal mb-11" id="additional">
+        <h2 class="font-serif text-xl font-bold uppercase tracking-wider">
+          Additional Information
+        </h2>
+        <div class="section-rule"></div>
+        <p class="text-[15px] leading-7 text-muted">
+          <span class="font-semibold text-ink">Languages:</span> English (full
+          professional proficiency) and Sinhala (native).
+        </p>
+        <p class="text-[15px] leading-7 text-muted">
+          <span class="font-semibold text-ink">References:</span> Available upon
+          request.
+        </p>
+      </section>
 
-  <script>
-    const themeToggles = Array.from(document.querySelectorAll("[data-theme-toggle]"));
+      <section
+        class="reveal mt-11 rounded border border-line p-6 sm:p-8"
+        id="contact"
+      >
+        <div class="max-w-2xl">
+          <p
+            class="mb-2 text-xs font-semibold uppercase tracking-[.18em] text-accent"
+          >
+            Get in touch
+          </p>
+          <h2 class="font-serif text-2xl font-bold">Contact Me</h2>
+          <p class="mt-2 text-[15px] leading-7 text-muted">
+            Have a project, opportunity, or question? Send a message and I’ll
+            get back to you.
+          </p>
+        </div>
+        <form
+          class="mt-7 grid gap-5"
+          id="contact-form"
+          action="https://formcarry.com/s/q5YNXyDmIR1"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label class="mb-2 block text-sm font-semibold" for="contact-name"
+                >Name</label
+              >
+              <input
+                class="w-full rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent"
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Your name"
+                required
+              />
+            </div>
+            <div>
+              <label
+                class="mb-2 block text-sm font-semibold"
+                for="contact-email"
+                >Email</label
+              >
+              <input
+                class="w-full rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent"
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              class="mb-2 block text-sm font-semibold"
+              for="contact-subject"
+              >Subject</label
+            >
+            <input
+              class="w-full rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent"
+              id="contact-subject"
+              name="subject"
+              type="text"
+              placeholder="What would you like to discuss?"
+              required
+            />
+          </div>
+          <div>
+            <label
+              class="mb-2 block text-sm font-semibold"
+              for="contact-message"
+              >Message</label
+            >
+            <textarea
+              class="min-h-36 w-full resize-y rounded border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/70 focus:border-accent focus:ring-accent"
+              id="contact-message"
+              name="message"
+              placeholder="Write your message here..."
+              required
+            ></textarea>
+          </div>
+          <div
+            class="flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+          >
+            <button
+              class="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-ink"
+              type="submit"
+            >
+              Send Message
+            </button>
+            <p class="text-sm text-muted">
+              Your message will be delivered through the contact form.
+            </p>
+          </div>
+        </form>
+      </section>
+    </main>
 
-    function applyTheme(theme) {
-      const isDark = theme === "dark";
-      document.body.classList.toggle("dark-mode", isDark);
+    <footer class="no-print border-t border-line bg-white py-8">
+      <div
+        class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 px-5 text-sm text-muted sm:flex-row"
+      >
+        <p>© 2026 Vishwa Bandara</p>
+        <a class="font-semibold text-ink hover:text-accent" href="#contact"
+          >Let’s connect</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      const themeToggles = Array.from(
+        document.querySelectorAll("[data-theme-toggle]"),
+      );
+
+      function applyTheme(theme) {
+        const isDark = theme === "dark";
+        document.body.classList.toggle("dark-mode", isDark);
+
+        themeToggles.forEach((toggle) => {
+          toggle.setAttribute("aria-pressed", String(isDark));
+          toggle.setAttribute(
+            "aria-label",
+            isDark ? "Switch to light mode" : "Switch to dark mode",
+          );
+          toggle
+            .querySelector("[data-theme-moon]")
+            .classList.toggle("hidden", isDark);
+          toggle
+            .querySelector("[data-theme-sun]")
+            .classList.toggle("hidden", !isDark);
+        });
+      }
+
+      let savedTheme = null;
+      try {
+        savedTheme = localStorage.getItem("portfolio-theme");
+      } catch (error) {
+        savedTheme = null;
+      }
+      const preferredTheme = savedTheme || "light";
+      applyTheme(preferredTheme);
 
       themeToggles.forEach((toggle) => {
-        toggle.setAttribute("aria-pressed", String(isDark));
-        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
-        toggle.querySelector("[data-theme-moon]").classList.toggle("hidden", isDark);
-        toggle.querySelector("[data-theme-sun]").classList.toggle("hidden", !isDark);
-      });
-    }
-
-    let savedTheme = null;
-    try {
-      savedTheme = localStorage.getItem("portfolio-theme");
-    } catch (error) {
-      savedTheme = null;
-    }
-    const preferredTheme = savedTheme || "light";
-    applyTheme(preferredTheme);
-
-    themeToggles.forEach((toggle) => {
-      toggle.addEventListener("click", () => {
-        const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
-        applyTheme(nextTheme);
-        try {
-          localStorage.setItem("portfolio-theme", nextTheme);
-        } catch (error) {
-          // The selected theme still applies for the current visit.
-        }
-      });
-    });
-
-    const pageLoader = document.getElementById("page-loader");
-    const minimumLoaderTime = new Promise((resolve) => setTimeout(resolve, 1000));
-    const pageFullyLoaded = new Promise((resolve) => {
-      if (document.readyState === "complete") {
-        resolve();
-      } else {
-        window.addEventListener("load", resolve, { once: true });
-      }
-    });
-
-    Promise.all([minimumLoaderTime, pageFullyLoaded]).then(() => {
-      pageLoader.classList.add("is-hiding");
-      document.body.classList.remove("is-loading");
-      document.body.setAttribute("aria-busy", "false");
-      window.setTimeout(() => pageLoader.remove(), 500);
-    });
-
-    const sections = document.querySelectorAll(".reveal");
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuOpenIcon = document.getElementById("menu-open-icon");
-    const menuCloseIcon = document.getElementById("menu-close-icon");
-    const mobileMenuClose = document.getElementById("mobile-menu-close");
-    const mobileToc = document.getElementById("mobile-toc");
-    const desktopToc = document.querySelector(".table-of-contents nav");
-    const contactMenuToggle = document.getElementById("contact-menu-toggle");
-    const contactMenu = document.getElementById("contact-menu");
-    const contactMenuClose = document.getElementById("contact-menu-close");
-    const mobileContactLinks = document.getElementById("mobile-contact-links");
-    const desktopContactNav = document.querySelector(".contact-rail nav");
-
-    mobileToc.innerHTML = desktopToc.innerHTML;
-    mobileToc.querySelectorAll(".toc-link").forEach((link) => {
-      link.classList.remove("toc-link", "is-active");
-      link.classList.add("mobile-toc-link");
-      link.removeAttribute("aria-current");
-    });
-
-    mobileContactLinks.innerHTML = desktopContactNav.innerHTML;
-    mobileContactLinks.querySelectorAll(".contact-rail-link").forEach((link) => {
-      link.classList.remove("contact-rail-link");
-      link.classList.add("mobile-contact-link");
-    });
-
-    function syncOverlayLock() {
-      const anOverlayIsOpen = mobileMenu.classList.contains("is-open") || contactMenu.classList.contains("is-open");
-      document.body.classList.toggle("overlay-open", anOverlayIsOpen);
-    }
-
-    function setMobileMenu(open) {
-      if (open) setContactMenu(false);
-      mobileMenu.classList.toggle("is-open", open);
-      mobileMenu.setAttribute("aria-hidden", String(!open));
-      menuOpenIcon.classList.toggle("hidden", open);
-      menuCloseIcon.classList.toggle("hidden", !open);
-      menuToggle.setAttribute("aria-expanded", String(open));
-      menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
-      syncOverlayLock();
-      if (open) mobileMenuClose.focus();
-    }
-
-    function setContactMenu(open) {
-      if (open) setMobileMenu(false);
-      contactMenu.classList.toggle("is-open", open);
-      contactMenu.setAttribute("aria-hidden", String(!open));
-      contactMenuToggle.setAttribute("aria-expanded", String(open));
-      contactMenuToggle.setAttribute("aria-label", open ? "Close contact menu" : "Open contact menu");
-      syncOverlayLock();
-      if (open) contactMenuClose.focus();
-    }
-
-    menuToggle.addEventListener("click", () => {
-      setMobileMenu(menuToggle.getAttribute("aria-expanded") !== "true");
-    });
-    mobileMenuClose.addEventListener("click", () => {
-      setMobileMenu(false);
-      menuToggle.focus();
-    });
-    contactMenuToggle.addEventListener("click", () => {
-      setContactMenu(contactMenuToggle.getAttribute("aria-expanded") !== "true");
-    });
-    contactMenuClose.addEventListener("click", () => {
-      setContactMenu(false);
-      contactMenuToggle.focus();
-    });
-
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => setMobileMenu(false));
-    });
-    contactMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => setContactMenu(false));
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        if (contactMenu.classList.contains("is-open")) {
-          setContactMenu(false);
-          contactMenuToggle.focus();
-        } else if (mobileMenu.classList.contains("is-open")) {
-          setMobileMenu(false);
-          menuToggle.focus();
-        }
-      }
-    });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth >= 768) setMobileMenu(false);
-      if (window.innerWidth >= 1500) setContactMenu(false);
-    });
-
-    const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
-    const mobileTocLinks = Array.from(document.querySelectorAll(".mobile-toc-link"));
-    const sectionHeader = document.getElementById("section-header");
-    const tableOfContents = document.querySelector(".table-of-contents");
-    const contactRail = document.querySelector(".contact-rail");
-    const contactRailLinks = Array.from(document.querySelectorAll(".contact-rail-link"));
-
-    tocLinks.forEach((link) => {
-      const label = link.textContent.trim();
-      link.dataset.label = label;
-      link.setAttribute("aria-label", label);
-    });
-
-    contactRailLinks.forEach((link) => {
-      const label = link.textContent.trim();
-      link.dataset.label = label;
-      link.setAttribute("aria-label", label);
-    });
-
-    const tocSections = tocLinks
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
-
-    function updateSectionHeader(label) {
-      if (sectionHeader.textContent === label) return;
-      sectionHeader.textContent = label;
-      sectionHeader.classList.remove("section-header-animate");
-      void sectionHeader.offsetWidth;
-      sectionHeader.classList.add("section-header-animate");
-    }
-
-    function updateTableOfContents() {
-      let activeSection = null;
-      const shouldMinimizeRails = window.scrollY > 40;
-      tableOfContents.classList.toggle("is-minimized", shouldMinimizeRails);
-      contactRail.classList.toggle("is-minimized", shouldMinimizeRails);
-
-      tocSections.forEach((section) => {
-        if (section.getBoundingClientRect().top <= 165) {
-          activeSection = section;
-        }
-      });
-
-      [...tocLinks, ...mobileTocLinks].forEach((link) => {
-        const isActive = activeSection && link.getAttribute("href") === `#${activeSection.id}`;
-        link.classList.toggle("is-active", isActive);
-        if (isActive) {
-          link.setAttribute("aria-current", "true");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-
-      const activeLink = activeSection
-        ? tocLinks.find((link) => link.getAttribute("href") === `#${activeSection.id}`)
-        : null;
-      updateSectionHeader(activeLink ? activeLink.textContent.trim() : "Welcome");
-    }
-
-    window.addEventListener("scroll", updateTableOfContents, { passive: true });
-    updateTableOfContents();
-
-    document.querySelectorAll("[data-project-toggle]").forEach((button) => {
-      const details = document.getElementById(button.getAttribute("aria-controls"));
-      const label = button.querySelector("[data-toggle-label]");
-
-      button.addEventListener("click", () => {
-        const isOpen = button.getAttribute("aria-expanded") === "true";
-        button.setAttribute("aria-expanded", String(!isOpen));
-        details.classList.toggle("hidden", isOpen);
-        label.textContent = isOpen ? "More" : "Less";
-      });
-    });
-
-    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
+        toggle.addEventListener("click", () => {
+          const nextTheme = document.body.classList.contains("dark-mode")
+            ? "light"
+            : "dark";
+          applyTheme(nextTheme);
+          try {
+            localStorage.setItem("portfolio-theme", nextTheme);
+          } catch (error) {
+            // The selected theme still applies for the current visit.
           }
         });
-      }, { threshold: 0.08 });
-      sections.forEach((section) => observer.observe(section));
-    } else {
-      sections.forEach((section) => section.classList.add("visible"));
-    }
-  </script>
-</body>
+      });
+
+      const pageLoader = document.getElementById("page-loader");
+      const minimumLoaderTime = new Promise((resolve) =>
+        setTimeout(resolve, 1000),
+      );
+      const pageFullyLoaded = new Promise((resolve) => {
+        if (document.readyState === "complete") {
+          resolve();
+        } else {
+          window.addEventListener("load", resolve, { once: true });
+        }
+      });
+
+      Promise.all([minimumLoaderTime, pageFullyLoaded]).then(() => {
+        pageLoader.classList.add("is-hiding");
+        document.body.classList.remove("is-loading");
+        document.body.setAttribute("aria-busy", "false");
+        window.setTimeout(() => pageLoader.remove(), 500);
+      });
+
+      const sections = document.querySelectorAll(".reveal");
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuOpenIcon = document.getElementById("menu-open-icon");
+      const menuCloseIcon = document.getElementById("menu-close-icon");
+      const mobileMenuClose = document.getElementById("mobile-menu-close");
+      const mobileToc = document.getElementById("mobile-toc");
+      const desktopToc = document.querySelector(".table-of-contents nav");
+      const contactMenuToggle = document.getElementById("contact-menu-toggle");
+      const contactMenu = document.getElementById("contact-menu");
+      const contactMenuClose = document.getElementById("contact-menu-close");
+      const mobileContactLinks = document.getElementById(
+        "mobile-contact-links",
+      );
+      const desktopContactNav = document.querySelector(".contact-rail nav");
+
+      mobileToc.innerHTML = desktopToc.innerHTML;
+      mobileToc.querySelectorAll(".toc-link").forEach((link) => {
+        link.classList.remove("toc-link", "is-active");
+        link.classList.add("mobile-toc-link");
+        link.removeAttribute("aria-current");
+      });
+
+      mobileContactLinks.innerHTML = desktopContactNav.innerHTML;
+      mobileContactLinks
+        .querySelectorAll(".contact-rail-link")
+        .forEach((link) => {
+          link.classList.remove("contact-rail-link");
+          link.classList.add("mobile-contact-link");
+        });
+
+      function syncOverlayLock() {
+        const anOverlayIsOpen =
+          mobileMenu.classList.contains("is-open") ||
+          contactMenu.classList.contains("is-open");
+        document.body.classList.toggle("overlay-open", anOverlayIsOpen);
+      }
+
+      function setMobileMenu(open) {
+        if (open) setContactMenu(false);
+        mobileMenu.classList.toggle("is-open", open);
+        mobileMenu.setAttribute("aria-hidden", String(!open));
+        menuOpenIcon.classList.toggle("hidden", open);
+        menuCloseIcon.classList.toggle("hidden", !open);
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute(
+          "aria-label",
+          open ? "Close navigation menu" : "Open navigation menu",
+        );
+        syncOverlayLock();
+        if (open) mobileMenuClose.focus();
+      }
+
+      function setContactMenu(open) {
+        if (open) setMobileMenu(false);
+        contactMenu.classList.toggle("is-open", open);
+        contactMenu.setAttribute("aria-hidden", String(!open));
+        contactMenuToggle.setAttribute("aria-expanded", String(open));
+        contactMenuToggle.setAttribute(
+          "aria-label",
+          open ? "Close contact menu" : "Open contact menu",
+        );
+        syncOverlayLock();
+        if (open) contactMenuClose.focus();
+      }
+
+      menuToggle.addEventListener("click", () => {
+        setMobileMenu(menuToggle.getAttribute("aria-expanded") !== "true");
+      });
+      mobileMenuClose.addEventListener("click", () => {
+        setMobileMenu(false);
+        menuToggle.focus();
+      });
+      contactMenuToggle.addEventListener("click", () => {
+        setContactMenu(
+          contactMenuToggle.getAttribute("aria-expanded") !== "true",
+        );
+      });
+      contactMenuClose.addEventListener("click", () => {
+        setContactMenu(false);
+        contactMenuToggle.focus();
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMobileMenu(false));
+      });
+      contactMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setContactMenu(false));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          if (contactMenu.classList.contains("is-open")) {
+            setContactMenu(false);
+            contactMenuToggle.focus();
+          } else if (mobileMenu.classList.contains("is-open")) {
+            setMobileMenu(false);
+            menuToggle.focus();
+          }
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) setMobileMenu(false);
+        if (window.innerWidth >= 1500) setContactMenu(false);
+      });
+
+      const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
+      const mobileTocLinks = Array.from(
+        document.querySelectorAll(".mobile-toc-link"),
+      );
+      const sectionHeader = document.getElementById("section-header");
+      const tableOfContents = document.querySelector(".table-of-contents");
+      const contactRail = document.querySelector(".contact-rail");
+      const contactRailLinks = Array.from(
+        document.querySelectorAll(".contact-rail-link"),
+      );
+
+      tocLinks.forEach((link) => {
+        const label = link.textContent.trim();
+        link.dataset.label = label;
+        link.setAttribute("aria-label", label);
+      });
+
+      contactRailLinks.forEach((link) => {
+        const label = link.textContent.trim();
+        link.dataset.label = label;
+        link.setAttribute("aria-label", label);
+      });
+
+      const tocSections = tocLinks
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+
+      function updateSectionHeader(label) {
+        if (sectionHeader.textContent === label) return;
+        sectionHeader.textContent = label;
+        sectionHeader.classList.remove("section-header-animate");
+        void sectionHeader.offsetWidth;
+        sectionHeader.classList.add("section-header-animate");
+      }
+
+      function updateTableOfContents() {
+        let activeSection = null;
+        const shouldMinimizeRails = window.scrollY > 40;
+        tableOfContents.classList.toggle("is-minimized", shouldMinimizeRails);
+        contactRail.classList.toggle("is-minimized", shouldMinimizeRails);
+
+        tocSections.forEach((section) => {
+          if (section.getBoundingClientRect().top <= 165) {
+            activeSection = section;
+          }
+        });
+
+        [...tocLinks, ...mobileTocLinks].forEach((link) => {
+          const isActive =
+            activeSection &&
+            link.getAttribute("href") === `#${activeSection.id}`;
+          link.classList.toggle("is-active", isActive);
+          if (isActive) {
+            link.setAttribute("aria-current", "true");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+
+        const activeLink = activeSection
+          ? tocLinks.find(
+              (link) => link.getAttribute("href") === `#${activeSection.id}`,
+            )
+          : null;
+        updateSectionHeader(
+          activeLink ? activeLink.textContent.trim() : "Welcome",
+        );
+      }
+
+      window.addEventListener("scroll", updateTableOfContents, {
+        passive: true,
+      });
+      updateTableOfContents();
+
+      document.querySelectorAll("[data-project-toggle]").forEach((button) => {
+        const details = document.getElementById(
+          button.getAttribute("aria-controls"),
+        );
+        const label = button.querySelector("[data-toggle-label]");
+
+        button.addEventListener("click", () => {
+          const isOpen = button.getAttribute("aria-expanded") === "true";
+          button.setAttribute("aria-expanded", String(!isOpen));
+          details.classList.toggle("hidden", isOpen);
+          label.textContent = isOpen ? "More" : "Less";
+        });
+      });
+
+      if (
+        "IntersectionObserver" in window &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08 },
+        );
+        sections.forEach((section) => observer.observe(section));
+      } else {
+        sections.forEach((section) => section.classList.add("visible"));
+      }
+    </script>
+  </body>
 </html>
